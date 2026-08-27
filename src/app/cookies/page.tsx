@@ -52,8 +52,10 @@ export default function CookiesPage() {
 
       <h2>4. Overige externe content</h2>
       <p>
-        Lettertypen worden vanaf onze eigen server geladen. Afgezien van de planningsmodule
-        hierboven laadt de website geen externe scripts of embeds die cookies plaatsen.
+        Lettertypen worden vanaf onze eigen server geladen. Op de reviewsectie tonen wij Google-
+        beoordelingen; de profielfoto&rsquo;s daarbij worden als afbeelding vanaf de servers van
+        Google geladen. Dit plaatst geen cookies. Afgezien van de planningsmodule hierboven laadt de
+        website geen externe scripts of embeds die cookies plaatsen.
       </p>
 
       <h2>5. Wijzigingen</h2>

@@ -3,47 +3,39 @@ import { Container } from "@/components/ui/container";
 import { Carousel } from "@/components/ui/carousel";
 import { Reveal } from "@/components/motion/reveal";
 import { Typewriter } from "@/components/motion/typewriter";
-import { reviews, featuredTestimonial } from "@/content/reviews";
+import { ReviewCard, type DisplayReview } from "@/components/marketing/review-card";
+import { curatedReviews, featuredTestimonial } from "@/content/reviews";
+import { getGoogleReviews } from "@/lib/google-reviews";
 import { site } from "@/lib/site";
-import type { Review } from "@/content/schema";
 
-function Stars() {
-  return (
-    <div className="mb-3 flex gap-0.5 text-star" aria-label="5 van 5 sterren">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className="h-3 w-3 fill-current" />
-      ))}
-    </div>
-  );
+function curatedToDisplay(): DisplayReview[] {
+  return curatedReviews.map((r, i) => ({
+    id: `curated-${i}`,
+    author: r.author,
+    rating: 5,
+    text: r.text,
+    meta: r.meta,
+  }));
 }
 
-function ReviewCard({ review }: { review: Review }) {
-  return (
-    <article className="flex h-full flex-col rounded-[20px] border border-line bg-white p-6">
-      <Stars />
-      {review.text ? (
-        <p className="m-0 line-clamp-5 text-[13.5px] leading-relaxed text-[#3E4A5F]">
-          {review.text}
-        </p>
-      ) : (
-        <p className="m-0 text-[13.5px] italic text-muted-ink/70">Beoordeeld met 5 sterren</p>
-      )}
-      <div className="mt-auto flex items-center gap-2.5 border-t border-[#EEEBE2] pt-3.5">
-        <span className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full bg-[#E9E5DA] text-[11px] font-bold text-muted-ink">
-          {review.author.charAt(0)}
-        </span>
-        <span className="flex flex-col">
-          <span className="text-[12px] font-semibold text-[#6B7688]">{review.author}</span>
-          {review.meta ? (
-            <span className="text-[10.5px] text-[#B4B0A4]">{review.meta}</span>
-          ) : null}
-        </span>
-      </div>
-    </article>
-  );
-}
+export async function Reviews() {
+  const live = await getGoogleReviews();
 
-export function Reviews() {
+  const rating = live?.rating ?? site.rating.value;
+  const count = live?.count ?? site.rating.count;
+  const cards: DisplayReview[] =
+    live && live.reviews.length > 0
+      ? live.reviews.map((r) => ({
+          id: r.id,
+          author: r.author,
+          authorPhotoUrl: r.authorPhotoUrl,
+          authorUrl: r.authorUrl,
+          rating: r.rating,
+          text: r.text,
+          meta: r.relativeTime,
+        }))
+      : curatedToDisplay();
+
   return (
     <Container width="content" id="testimonial" className="py-20">
       <Reveal className="mx-auto mb-7 max-w-[640px] text-center">
@@ -58,22 +50,35 @@ export function Reviews() {
 
       <div className="mb-7 flex flex-wrap items-center justify-center gap-3.5">
         <span className="text-[19px] font-extrabold text-ink">
-          {site.rating.value.toLocaleString("nl-NL")}
+          {rating.toLocaleString("nl-NL", {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
+          })}
         </span>
         <span className="flex gap-0.5 text-star">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star key={i} className="h-4 w-4 fill-current" />
           ))}
         </span>
-        <span className="text-[13.5px] text-muted-ink">{site.rating.count} Google reviews</span>
+        <span className="text-[13.5px] text-muted-ink">{count} Google reviews</span>
+        {live?.mapsUrl ? (
+          <a
+            href={live.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13.5px] font-semibold text-navy underline underline-offset-2 hover:text-coral"
+          >
+            Bekijk op Google
+          </a>
+        ) : null}
       </div>
 
       <Carousel
         ariaLabel="Klantbeoordelingen"
         slideClassName="basis-full sm:basis-1/2 nav:basis-1/3"
       >
-        {reviews.map((review) => (
-          <ReviewCard key={review.author} review={review} />
+        {cards.map((review) => (
+          <ReviewCard key={review.id} review={review} />
         ))}
       </Carousel>
 
@@ -89,9 +94,6 @@ export function Reviews() {
           <span className="h-px w-9 bg-[#C9C4B4]" />
         </div>
       </Reveal>
-
-      {/* TODO(content): the prototype also has an "Achter de schermen" photo
-          carousel here — omitted until real photos are supplied. */}
     </Container>
   );
 }

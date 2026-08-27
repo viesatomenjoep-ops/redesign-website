@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      // Google review author avatars
+      { protocol: "https", hostname: "*.googleusercontent.com" },
+    ],
   },
   async headers() {
     return [

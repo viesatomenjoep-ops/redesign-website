@@ -1,4 +1,5 @@
 import { site } from "@/lib/site";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -10,7 +11,11 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
   );
 }
 
-export function OrganizationJsonLd() {
+export async function OrganizationJsonLd() {
+  const live = await getGoogleReviews();
+  const ratingValue = live?.rating ?? site.rating.value;
+  const reviewCount = live?.count ?? site.rating.count;
+
   return (
     <JsonLd
       data={{
@@ -31,8 +36,8 @@ export function OrganizationJsonLd() {
         sameAs: [site.social.instagram],
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: site.rating.value,
-          reviewCount: site.rating.count,
+          ratingValue,
+          reviewCount,
           bestRating: 5,
         },
       }}

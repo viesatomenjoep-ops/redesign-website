@@ -56,6 +56,13 @@ export default function PrivacyPage() {
         ontvangen deze afspraakgegevens en verwerken ze om je audit voor te bereiden en uit te
         voeren.
       </p>
+      <h3>Google-beoordelingen</h3>
+      <p>
+        Op de website tonen wij openbare beoordelingen van onze Google Bedrijfsprofiel-pagina
+        (naam, tekst, waardering en profielfoto van de reviewer). Deze gegevens zijn door de
+        reviewers zelf openbaar op Google geplaatst; wij halen ze periodiek op via de Google
+        Places API en tonen ze met bronvermelding.
+      </p>
       <h3>Websitestatistieken</h3>
       <p>
         Wij meten het gebruik van de website met een privacyvriendelijke, cookieloze

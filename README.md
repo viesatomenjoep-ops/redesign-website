@@ -17,6 +17,9 @@ design tokens, and open questions.
 - Hardcoded typed content in `src/content/*` (Zod-validated)
 - Contact form → `/api/contact` route handler → Resend (env-guarded) + optional
   n8n webhook
+- Reviews section pulls live Google reviews via the Places API (New), server-side
+  and cached 24h, with `src/content/reviews.ts` as the fallback. See
+  [`GOOGLE_REVIEWS_PLAN.md`](./GOOGLE_REVIEWS_PLAN.md).
 - **"Vraag gratis audit aan"** → Cal.com embed (`@calcom/embed-react`), loaded on
   click; optional booking webhook at `/api/cal/webhook`. See
   [`CALCOM_INTEGRATION_PLAN.md`](./CALCOM_INTEGRATION_PLAN.md).
@@ -103,6 +106,10 @@ src/
 See `.env.example`. With `RESEND_API_KEY` unset, `/api/contact` and
 `/api/cal/webhook` validate and log the payload instead of sending — fine for
 local dev.
+
+For live Google reviews, set `GOOGLE_PLACES_API_KEY` (restricted to *Places API
+New*, server-side only) and `GOOGLE_PLACE_ID`. Without them the reviews section
+falls back to the curated snapshot in `src/content/reviews.ts`.
 
 For the Cal.com booking button, set `NEXT_PUBLIC_CALCOM_LINK` to your
 `<handle>/<event-slug>` and configure the event type (duration, booking

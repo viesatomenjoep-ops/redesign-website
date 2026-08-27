@@ -46,7 +46,8 @@ export function BookAuditButton({
         theme: "light",
         hideEventTypeDetails: false,
         layout: "month_view",
-        cssVarsPerTheme: { light: calcomBrandVars },
+        // We force the light theme; `dark` is only here because the type requires it.
+        cssVarsPerTheme: { light: calcomBrandVars, dark: calcomBrandVars },
       });
       cal("on", { action: "bookingSuccessful", callback: onBooked });
     })();

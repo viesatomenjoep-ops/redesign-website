@@ -1,8 +1,8 @@
 import { reviewSchema, type Review } from "@/content/schema";
 
 /**
- * Static snapshot of the Google reviews shown in the prototype
- * (bron: Google — 5,0 / 15). Not pulled live; revisit if the rating drifts.
+ * Curated snapshot of Google reviews. Used as the fallback when the live
+ * Places API fetch (`src/lib/google-reviews.ts`) is unavailable or unconfigured.
  */
 const data: Review[] = [
   {
@@ -54,7 +54,7 @@ const data: Review[] = [
   { author: "Donny Stoppelenburg" },
 ];
 
-export const reviews: Review[] = data.map((r) => reviewSchema.parse(r));
+export const curatedReviews: Review[] = data.map((r) => reviewSchema.parse(r));
 
 /** The "client testimonial" pull-quote featured near the reviews. */
 export const featuredTestimonial = {
