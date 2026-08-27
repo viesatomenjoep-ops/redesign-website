@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — single source of truth (see IMPLEMENTATION_PLAN §2)
+ * Lifted from the Claude Design prototype's inline styles.
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Surfaces / brand */
+  --color-navy: #19445b;
+  --color-navy-800: #123243;
+  --color-navy-700: #1b4f63;
+  --color-ink: #111d36;
+  --color-ink-soft: #22334d;
+  --color-paper: #f3f0e9;
+  --color-paper-2: #f7f5ef;
+  --color-paper-3: #fbfaf5;
+
+  /* Accent */
+  --color-coral: #e2603f;
+  --color-coral-bright: #ff9169;
+  --color-coral-soft: #ee9a66;
+
+  /* Lines */
+  --color-line: #e4e1d8;
+  --color-line-dark: rgb(243 240 233 / 0.09);
+
+  /* Text on navy */
+  --color-muted: #aab6c9;
+  --color-muted-2: #8fa1bd;
+  --color-muted-3: #c7cfdc;
+  /* Text on paper */
+  --color-muted-ink: #55617a;
+
+  /* Misc */
+  --color-star: #fbbc05;
+
+  /* Typography (font CSS vars come from next/font in layout.tsx) */
+  --font-sans: var(--font-archivo), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+  --font-brand: var(--font-outfit), var(--font-archivo), sans-serif;
+
+  /* Radius */
+  --radius-tile: 44px;
+  --radius-card: 24px;
+  --radius-pill: 999px;
+
+  /* Extra breakpoints matching the prototype */
+  --breakpoint-xs: 38.75rem; /* 620px */
+  --breakpoint-nav: 56.25rem; /* 900px */
+  --breakpoint-mario: 61.3125rem; /* 981px */
+
+  /* Section container widths */
+  --container-content: 1160px;
+  --container-wide: 1240px;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out-quint: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-navy);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-coral);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-coral);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Keyframes (global — not layer-scoped)
+ * ------------------------------------------------------------------ */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Service-card micro-animations (simplified from the prototype) */
+@keyframes vz-wave {
+  0%,
+  100% {
+    transform: scaleY(0.22);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes vz-chat-in {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  6%,
+  74% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  84%,
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+@keyframes vz-flow {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+@keyframes vz-skel {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+@keyframes vz-grow {
+  0% {
+    transform: scaleY(0.08);
+  }
+  38%,
+  86% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes vz-tick {
+  0%,
+  8% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  18%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Small custom utilities / components
+ * ------------------------------------------------------------------ */
+@layer utilities {
+  /* Mono eyebrow label — used everywhere in the design */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.71875rem; /* ~11.5px */
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Reveal-on-scroll (JS toggles [data-revealed]) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.9s var(--ease-out-soft),
+      transform 0.9s var(--ease-out-soft);
+  }
+  .reveal[data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Infinite marquee */
+  .animate-marquee {
+    animation: marquee-scroll linear infinite;
+  }
+
+  /* Long-form legal copy (privacy / cookies) */
+  .legal-prose {
+    color: var(--color-muted-ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .legal-prose h2 {
+    margin: 2.5rem 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .legal-prose h2:first-child {
+    margin-top: 0;
+  }
+  .legal-prose h3 {
+    margin: 1.75rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .legal-prose p {
+    margin: 0 0 1rem;
+  }
+  .legal-prose ul {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+  .legal-prose li {
+    margin: 0.25rem 0;
+  }
+  .legal-prose a {
+    color: var(--color-coral);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal-prose strong {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+
+  /* Blinking typewriter caret */
+  .caret {
+    display: inline-block;
+    width: 0.09em;
+    height: 0.82em;
+    margin-left: 0.07em;
+    background: var(--color-coral);
+    animation: caret-blink 0.95s steps(1) infinite;
+    vertical-align: baseline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
