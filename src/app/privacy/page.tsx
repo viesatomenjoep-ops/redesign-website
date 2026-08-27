@@ -47,6 +47,15 @@ export default function PrivacyPage() {
         je IP-adres, het tijdstip van je bezoek en je browsertype. Deze gegevens worden gebruikt voor
         de werking, beveiliging en foutopsporing van de website.
       </p>
+      <h3>Afspraken inplannen</h3>
+      <p>
+        Voor het inplannen van een gratis audit gebruiken wij <strong>Cal.com</strong>. Als je op
+        &ldquo;Vraag gratis audit aan&rdquo; klikt, worden de gegevens die je in het boekingsformulier
+        invult (naam, e-mailadres, tijdzone en eventuele antwoorden op vragen) door Cal.com verwerkt
+        om de afspraak vast te leggen en bevestigings- en herinneringsmails te versturen. Wij
+        ontvangen deze afspraakgegevens en verwerken ze om je audit voor te bereiden en uit te
+        voeren.
+      </p>
       <h3>Websitestatistieken</h3>
       <p>
         Wij meten het gebruik van de website met een privacyvriendelijke, cookieloze
@@ -97,11 +106,16 @@ export default function PrivacyPage() {
           <strong>Automatiseringsplatform</strong> — indien van toepassing, om aanvragen door te
           zetten naar onze interne systemen.
         </li>
+        <li>
+          <strong>Cal.com</strong> (Cal.com, Inc., Verenigde Staten) — voor het inplannen en beheren
+          van auditafspraken.
+        </li>
       </ul>
       <p>
         Met deze partijen zijn verwerkersovereenkomsten gesloten. Voor zover gegevens buiten de
-        Europese Economische Ruimte worden verwerkt, gebeurt dit op basis van passende waarborgen
-        zoals de standaardcontractbepalingen van de Europese Commissie.
+        Europese Economische Ruimte worden verwerkt — zoals bij Cal.com — gebeurt dit op basis van
+        passende waarborgen zoals de standaardcontractbepalingen van de Europese Commissie en, waar
+        van toepassing, het EU-VS Data Privacy Framework.
       </p>
 
       <h2>6. Beveiliging</h2>

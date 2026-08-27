@@ -17,6 +17,9 @@ design tokens, and open questions.
 - Hardcoded typed content in `src/content/*` (Zod-validated)
 - Contact form → `/api/contact` route handler → Resend (env-guarded) + optional
   n8n webhook
+- **"Vraag gratis audit aan"** → Cal.com embed (`@calcom/embed-react`), loaded on
+  click; optional booking webhook at `/api/cal/webhook`. See
+  [`CALCOM_INTEGRATION_PLAN.md`](./CALCOM_INTEGRATION_PLAN.md).
 - Vercel Analytics + Speed Insights
 
 ## Getting started
@@ -97,8 +100,15 @@ src/
 
 ## Environment variables
 
-See `.env.example`. With `RESEND_API_KEY` unset, `/api/contact` validates and
-logs the payload instead of sending — fine for local dev.
+See `.env.example`. With `RESEND_API_KEY` unset, `/api/contact` and
+`/api/cal/webhook` validate and log the payload instead of sending — fine for
+local dev.
+
+For the Cal.com booking button, set `NEXT_PUBLIC_CALCOM_LINK` to your
+`<handle>/<event-slug>` and configure the event type (duration, booking
+questions, brand colour `#E2603F`) in the Cal.com dashboard. Point a Cal.com
+webhook at `/api/cal/webhook` with `CALCOM_WEBHOOK_SECRET` to mirror bookings
+into the internal inbox / n8n. Details in `CALCOM_INTEGRATION_PLAN.md`.
 
 ## Status
 

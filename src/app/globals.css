@@ -300,3 +300,23 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * Cal.com embed modal chrome (best-effort).
+ * The booking UI itself is a cross-origin iframe — themed via
+ * cal("ui", { cssVarsPerTheme }) in book-audit-button.tsx, not here.
+ * These rules target the wrapper Cal injects into our page; some of it
+ * lives in shadow DOM, so inspect with devtools before relying on them.
+ * ------------------------------------------------------------------ */
+cal-modal-box {
+  --cal-modal-border-radius: var(--radius-card);
+}
+cal-modal-box::part(backdrop) {
+  background: rgba(10, 20, 40, 0.66);
+  backdrop-filter: blur(6px);
+}
+cal-modal-box::part(modal-box) {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 40px 80px -24px rgba(10, 20, 40, 0.55);
+}

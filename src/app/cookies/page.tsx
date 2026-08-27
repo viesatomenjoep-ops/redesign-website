@@ -38,19 +38,31 @@ export default function CookiesPage() {
         anoniem.
       </p>
 
-      <h2>3. Externe content</h2>
+      <h2>3. Afspraken inplannen (Cal.com)</h2>
       <p>
-        Lettertypen worden vanaf onze eigen server geladen. De website laadt geen externe scripts of
-        embeds die cookies plaatsen.
+        Wanneer je op &ldquo;Vraag gratis audit aan&rdquo; klikt, laden wij de planningsmodule van{" "}
+        <strong>Cal.com</strong>. Pas op dat moment — dus alleen na jouw klik — wordt de Cal.com-code
+        geladen en kan Cal.com functionele opslag plaatsen op het domein <code>cal.com</code> om de
+        boekingskalender te laten werken. Meer informatie staat in de{" "}
+        <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">
+          privacyverklaring van Cal.com
+        </a>
+        . Klik je niet op de knop, dan wordt er niets van Cal.com geladen.
       </p>
 
-      <h2>4. Wijzigingen</h2>
+      <h2>4. Overige externe content</h2>
+      <p>
+        Lettertypen worden vanaf onze eigen server geladen. Afgezien van de planningsmodule
+        hierboven laadt de website geen externe scripts of embeds die cookies plaatsen.
+      </p>
+
+      <h2>5. Wijzigingen</h2>
       <p>
         Mochten wij in de toekomst wel cookies gaan gebruiken die toestemming vereisen, dan passen wij
         deze verklaring aan en vragen wij vooraf je toestemming via een cookiebanner.
       </p>
 
-      <h2>5. Meer informatie</h2>
+      <h2>6. Meer informatie</h2>
       <p>
         Hoe wij met persoonsgegevens omgaan lees je in onze{" "}
         <Link href="/privacy">privacyverklaring</Link>. Vragen? Mail{" "}

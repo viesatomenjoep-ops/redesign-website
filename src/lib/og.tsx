@@ -20,8 +20,9 @@ export function renderOgImage({ eyebrow, title }: OgArgs) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background:
-            "radial-gradient(900px 520px at 82% 8%, rgba(15,92,102,.55), transparent 60%), #19445B",
+          backgroundColor: "#19445B",
+          backgroundImage:
+            "linear-gradient(115deg, rgba(226,96,63,0.14) 0%, rgba(226,96,63,0) 42%)",
           fontFamily: "sans-serif",
           color: "#F3F0E9",
         }}

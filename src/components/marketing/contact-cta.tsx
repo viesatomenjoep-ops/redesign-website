@@ -1,7 +1,7 @@
-import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
-import { ContactForm } from "@/components/contact/contact-form";
+import { BookAuditButton } from "@/components/booking/book-audit-button";
+import { ContactLink } from "@/components/contact/contact-link";
 
 export function ContactCta() {
   return (
@@ -34,12 +34,16 @@ export function ContactCta() {
           Klaar om uw bedrijf te automatiseren?
         </h2>
         <p className="mx-auto mb-10 mt-5 text-[17px] leading-relaxed text-muted">
-          Vraag een gratis AI- &amp; automatiseringsaudit aan en ontdek binnen enkele dagen waar
-          automatisering het meeste oplevert.
+          Plan een gratis AI- &amp; automatiseringsaudit in. Binnen 30 minuten weet je waar
+          automatisering bij jou het meeste oplevert.
         </p>
 
-        <div className="mx-auto max-w-[440px] rounded-card bg-paper p-6 text-left sm:p-8">
-          <ContactForm variant="audit" />
+        <div className="flex flex-col items-center gap-4">
+          <BookAuditButton />
+          <p className="text-sm text-muted-2">
+            Liever eerst mailen?{" "}
+            <ContactLink className="text-muted">Stuur een bericht</ContactLink>
+          </p>
         </div>
       </Reveal>
     </section>
