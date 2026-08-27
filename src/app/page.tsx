@@ -31,9 +31,7 @@ export default function HomePage() {
         <ServicesGrid />
       </SectionTile>
 
-      <SectionTile label="Waarom Viesa" id="waarom">
-        <WhyViesa />
-      </SectionTile>
+      <WhyViesa />
 
       <SectionTile label="Tech stack" id="stack">
         <TechStack />
