@@ -148,21 +148,25 @@ function CaseDetail({
       </Container>
 
       <Container width="content" className="pb-20">
-        <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[28px] bg-navy-700">
+        {/* Capped at 780px and object-contain: several sources are small
+            (robeco 340px, schippers 558px) — stretching them to the full
+            1160px container is what made them blurry. */}
+        <div className="relative mx-auto aspect-[16/9] w-full max-w-[780px] overflow-hidden rounded-[28px] bg-navy-700">
           {study.image ? (
             <Image
               src={study.image}
               alt={study.name}
               fill
-              sizes="(max-width: 1160px) 100vw, 1160px"
-              className="object-cover object-top"
+              sizes="(max-width: 820px) 100vw, 780px"
+              quality={90}
+              className="object-contain"
               priority
             />
           ) : null}
         </div>
 
         {study.gallery.length > 0 ? (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mx-auto mt-4 grid max-w-[780px] gap-4 sm:grid-cols-2">
             {study.gallery.map((src, i) => (
               <div
                 key={src}
@@ -172,8 +176,9 @@ function CaseDetail({
                   src={src}
                   alt={`${study.name} — ${i + 2}`}
                   fill
-                  sizes="(max-width: 900px) 100vw, 570px"
-                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 100vw, 380px"
+                  quality={90}
+                  className="object-contain"
                 />
               </div>
             ))}
