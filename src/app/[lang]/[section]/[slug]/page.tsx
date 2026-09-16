@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -10,6 +9,7 @@ import { LucideIcon } from "@/components/ui/lucide-icon";
 import { ContactButton } from "@/components/contact/contact-button";
 import { CaseCard } from "@/components/marketing/case-card";
 import { ServiceCardVisual } from "@/components/marketing/service-card-visual";
+import { DeviceFrame } from "@/components/marketing/device-frame";
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { getCases, findCase, getOtherCases, caseAlternateSlugs } from "@/content/cases";
@@ -148,39 +148,29 @@ function CaseDetail({
       </Container>
 
       <Container width="content" className="pb-20">
-        {/* Capped at 780px and object-contain: several sources are small
-            (robeco 340px, schippers 558px) — stretching them to the full
-            1160px container is what made them blurry. */}
-        <div className="relative mx-auto aspect-[16/9] w-full max-w-[780px] overflow-hidden rounded-[28px] bg-navy-700">
-          {study.image ? (
-            <Image
-              src={study.image}
-              alt={study.name}
-              fill
-              sizes="(max-width: 820px) 100vw, 780px"
-              quality={90}
-              className="object-contain"
-              priority
-            />
-          ) : null}
-        </div>
+        {/* Screenshots are presented on CSS-drawn Apple devices. Capped at
+            780px — several sources are small (robeco 340px, schippers 558px)
+            and stretching them to the full container made them blurry. */}
+        {study.image ? (
+          <DeviceFrame
+            src={study.image}
+            alt={study.name}
+            variant="macbook-pro"
+            priority
+            className="mx-auto max-w-[780px]"
+          />
+        ) : null}
 
         {study.gallery.length > 0 ? (
-          <div className="mx-auto mt-4 grid max-w-[780px] gap-4 sm:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-[820px] items-end gap-x-8 gap-y-12 sm:grid-cols-2">
             {study.gallery.map((src, i) => (
-              <div
+              <DeviceFrame
                 key={src}
-                className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-navy-700"
-              >
-                <Image
-                  src={src}
-                  alt={`${study.name} — ${i + 2}`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 380px"
-                  quality={90}
-                  className="object-contain"
-                />
-              </div>
+                src={src}
+                alt={`${study.name} — ${i + 2}`}
+                variant={i % 2 === 0 ? "imac" : "macbook-air"}
+                sizes="(max-width: 640px) 100vw, 380px"
+              />
             ))}
           </div>
         ) : null}
