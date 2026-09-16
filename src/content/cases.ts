@@ -20,7 +20,7 @@ type CaseCopy = {
 
 const base: CaseBase[] = [
   { id: "wehkamp", name: "Wehkamp", image: "/uploads/card-wehkamp.jpg" },
-  { id: "ibiza", name: "Ibiza Mi Vida", image: "/uploads/pasted-1786565066955-0.png" },
+  { id: "ibiza", name: "Ibiza Mi Vida", image: "/uploads/case-ibiza-site.jpg" },
   { id: "rooster", name: "Rooster", image: "/uploads/case-rooster.jpeg" },
   { id: "equivest", name: "Equivest", image: "/uploads/case-equivest-site.jpg" },
   { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },
@@ -39,10 +39,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     ibiza: {
       slug: "ibiza",
-      category: "MOBIELE APP",
-      summary: "Maatwerk mobiele applicatie gebouwd rond de behoeften van de doelgroep.",
+      category: "BOEKINGSPLATFORM",
+      summary:
+        "Compleet boekingsplatform voor tickets, privéboten en activiteiten op Ibiza — binnen twee weken 150 tickets verkocht.",
       description:
-        "Een maatwerk mobiele applicatie, ontwikkeld van concept tot livegang, met een gebruiksvriendelijke interface die aansluit op de behoeften van de doelgroep.",
+        "Voor onze Franse partner bouwden we het volledige Ibiza Mi Vida-platform: een meertalige boekingssite voor events, clubtickets, privéboten en activiteiten, met custom CMS en directe partnerships met bedrijven op het eiland. Dankzij een slimme SEO-strategie werden binnen twee weken na livegang al 150 tickets verkocht.",
     },
     rooster: {
       slug: "rooster",
@@ -91,10 +92,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     ibiza: {
       slug: "ibiza",
-      category: "MOBILE APP",
-      summary: "Custom mobile application built around the needs of the target audience.",
+      category: "BOOKING PLATFORM",
+      summary:
+        "Complete booking platform for tickets, private boats and activities on Ibiza — 150 tickets sold within two weeks.",
       description:
-        "A custom mobile application, developed from concept to launch, with a user-friendly interface that matches the needs of the target audience.",
+        "For our French partner we built the entire Ibiza Mi Vida platform: a multilingual booking site for events, club tickets, private boats and activities, with a custom CMS and direct partnerships with businesses on the island. Thanks to a smart SEO strategy, 150 tickets were sold within two weeks of launch.",
     },
     rooster: {
       slug: "rooster",
@@ -144,11 +146,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     ibiza: {
       slug: "ibiza",
-      category: "APLICACIÓN MÓVIL",
+      category: "PLATAFORMA DE RESERVAS",
       summary:
-        "Aplicación móvil a medida creada en torno a las necesidades del público objetivo.",
+        "Plataforma completa de reservas de entradas, barcos privados y actividades en Ibiza: 150 entradas vendidas en dos semanas.",
       description:
-        "Una aplicación móvil a medida, desarrollada desde el concepto hasta la puesta en marcha, con una interfaz fácil de usar que responde a las necesidades del público objetivo.",
+        "Para nuestro socio francés desarrollamos la plataforma completa de Ibiza Mi Vida: una web de reservas multilingüe para eventos, entradas de clubs, barcos privados y actividades, con un CMS a medida y colaboraciones directas con empresas de la isla. Gracias a una estrategia SEO inteligente, se vendieron 150 entradas en las dos primeras semanas tras el lanzamiento.",
     },
     rooster: {
       slug: "rooster",
