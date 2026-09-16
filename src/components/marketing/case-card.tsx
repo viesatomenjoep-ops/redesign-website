@@ -37,7 +37,7 @@ export function CaseCard({ study, locale, className, imageFit = "cover" }: CaseC
           </div>
         )}
       </div>
-      <div className="flex items-center justify-between gap-3 border-t border-[#EEEBE2] px-5 py-4">
+      <div className="flex flex-col items-start gap-2.5 border-t border-[#EEEBE2] px-5 py-4">
         <span className="flex flex-col gap-[3px]">
           <span className="font-mono text-[9px] tracking-[0.14em] text-coral">{study.category}</span>
           <span className="text-base font-extrabold tracking-[-0.01em] text-ink">{study.name}</span>

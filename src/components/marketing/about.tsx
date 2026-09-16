@@ -6,8 +6,8 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary, interpolate } from "@/lib/dictionaries";
 
 const founders = [
-  { name: "Tom van Biene", photo: "/uploads/portret-tom.jpg" },
   { name: "Joep Hellemons", photo: "/uploads/portret-joep.jpg" },
+  { name: "Tom van Biene", photo: "/uploads/portret-tom.jpg" },
 ];
 
 export function About({ locale }: { locale: Locale }) {
