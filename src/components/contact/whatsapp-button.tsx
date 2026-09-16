@@ -1,17 +1,17 @@
 import { site } from "@/lib/site";
 
 /**
- * Floating WhatsApp action, mounted once in the root layout so it rides along
+ * Floating WhatsApp action, mounted once in the locale layout so it rides along
  * on every page. Sits at z-[80]: under the header (90), the mobile menu (95/96)
  * and the contact dialog (1000) so it never covers an open overlay.
  */
-export function WhatsAppButton() {
+export function WhatsAppButton({ ariaLabel }: { ariaLabel: string }) {
   return (
     <a
       href={site.whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Stuur een WhatsApp-bericht naar ${site.phone}`}
+      aria-label={ariaLabel}
       className="fixed bottom-5 right-5 z-[80] flex h-14 w-14 items-center justify-center rounded-pill bg-[#25D366] text-white shadow-[0_12px_30px_-8px_rgba(10,20,40,0.45)] transition duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:shadow-[0_18px_38px_-10px_rgba(37,211,102,0.55)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:bottom-7 sm:right-7"
     >
       <svg

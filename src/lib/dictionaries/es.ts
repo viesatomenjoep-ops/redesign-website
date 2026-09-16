@@ -25,6 +25,9 @@ export const es: Dictionary = {
     label: "Idioma",
     ariaLabel: "Elija un idioma",
   },
+  whatsapp: {
+    ariaLabel: "Envíe un mensaje de WhatsApp al {phone}",
+  },
   hero: {
     title: "Hacemos los procesos de trabajo más inteligentes y móviles.",
     lede: "Combinamos más de 10 años de experiencia en software con la fuerza de la IA para que las empresas trabajen de forma más inteligente, rápida y eficiente.",

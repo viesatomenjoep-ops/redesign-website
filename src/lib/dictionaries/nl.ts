@@ -31,6 +31,10 @@ export const nl = {
     label: "Taal",
     ariaLabel: "Kies een taal",
   },
+  whatsapp: {
+    /** {phone} = the formatted phone number. */
+    ariaLabel: "Stuur een WhatsApp-bericht naar {phone}",
+  },
   hero: {
     title: "Wij maken werkprocessen slimmer en mobieler.",
     lede: "Met combinatie van 10+ jaar softwarekennis met de kracht van AI om bedrijven slimmer, sneller en efficiënter te laten werken.",

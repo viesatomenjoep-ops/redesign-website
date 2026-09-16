@@ -8,7 +8,7 @@ import { fontVariables } from "@/lib/fonts";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { htmlLang, isLocale, locales } from "@/lib/i18n";
-import { getDictionary } from "@/lib/dictionaries";
+import { getDictionary, interpolate } from "@/lib/dictionaries";
 import { OrganizationJsonLd } from "@/components/seo/json-ld";
 import { ContactDialogProvider } from "@/components/contact/contact-dialog";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
@@ -68,7 +68,7 @@ export default async function RootLayout({
         </a>
         <LocaleProvider locale={lang}>
           <ContactDialogProvider>{children}</ContactDialogProvider>
-          <WhatsAppButton />
+          <WhatsAppButton ariaLabel={interpolate(t.whatsapp.ariaLabel, { phone: site.phone })} />
         </LocaleProvider>
         <OrganizationJsonLd />
         <Analytics />
