@@ -8,7 +8,7 @@ export function ClientMarquee() {
   return (
     <div className="pt-14">
       <p className="eyebrow mb-8 text-center text-[#7A8699]">
-        Vertrouwd door innovatieve bedrijven
+        Ervaring bij toonaangevende organisaties
       </p>
       <div
         className="flex w-full justify-center overflow-hidden"

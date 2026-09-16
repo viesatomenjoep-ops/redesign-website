@@ -25,7 +25,7 @@ export const aiStudio: TechItem[] = [
   { name: "n8n", icon: "/uploads/tech-n8n.svg" },
 ].map((t) => techItemSchema.parse(t));
 
-/** Client-logo marquee ("Vertrouwd door innovatieve bedrijven"). */
+/** Client-logo marquee ("Ervaring bij toonaangevende organisaties"). */
 const clientData: Client[] = [
   { name: "Wehkamp", logo: "/uploads/wehkamp-logo-20A9DC6115-seeklogo.com_.png", height: 32 },
   { name: "Commerced", logo: "/uploads/commerced-logo-color.svg", height: 26 },
