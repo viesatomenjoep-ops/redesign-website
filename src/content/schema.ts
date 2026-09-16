@@ -10,6 +10,9 @@ export const serviceFeatureSchema = z.object({
 });
 
 export const serviceSchema = z.object({
+  /** Stable, locale-independent key. Equals the original Dutch slug. */
+  id: z.string(),
+  /** Localised URL segment — differs per locale. */
   slug: z.string(),
   label: z.string(),
   icon: z.string(),
@@ -20,6 +23,9 @@ export const serviceSchema = z.object({
 });
 
 export const caseSchema = z.object({
+  /** Stable, locale-independent key. Equals the original Dutch slug. */
+  id: z.string(),
+  /** Localised URL segment — differs per locale. */
   slug: z.string(),
   name: z.string(),
   category: z.string(),
