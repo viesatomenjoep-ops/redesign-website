@@ -33,6 +33,11 @@ const base: CaseBase[] = [
   { id: "nunhems", name: "Nunhems", image: "/uploads/case-nunhems.jpg" },
   { id: "schippers", name: "MS Schippers", image: "/uploads/card-schippers.jpg" },
   { id: "vamipro", name: "VaMiPro", image: "/uploads/case-vamipro-site.jpg" },
+  {
+    id: "viesa-dashboard",
+    name: "Viesa Dashboard",
+    image: "/uploads/case-viesa-dashboard.jpg",
+  },
 ];
 
 const copy: Record<Locale, Record<string, CaseCopy>> = {
@@ -96,6 +101,14 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
       description:
         "Voor VaMiPro bouwden we een complete webshop volledig op maat: productcatalogus, winkelwagen, kortingscodes en combinatiedeals, met een eigen CMS waarin de klant alles van A tot Z zelf aanpast — teksten, producten, acties en campagnes. Custom gebouwd, dus zonder de maandelijkse kosten van een Shopify-abonnement.",
     },
+    "viesa-dashboard": {
+      slug: "viesa-dashboard",
+      category: "EIGEN PLATFORM",
+      summary:
+        "Ons eigen alles-in-één sales- en administratiedashboard — van leads en offertes tot facturen, AI-audits en e-mailcampagnes.",
+      description:
+        "We bouwden ons eigen alles-in-één dashboard waarin het hele bedrijf draait: leads en pipeline als kanban, offertes met AI-generator die met één klik een factuur worden, facturen met automatische herinneringen, agenda, taken en e-mail met promomail-builder. De belmodule bevat belscripts en AI-suggesties, en de AI Visibility Audit vraagt ChatGPT, Claude, Gemini en Perplexity parallel wie zij aanraden in een niche — inclusief PDF-rapport voor de prospect. Aangevuld met notulen, whiteboards, projectnotities, sjablonen en een globale zoekfunctie: één omgeving, alles geautomatiseerd.",
+    },
   },
   en: {
     wehkamp: {
@@ -156,6 +169,14 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
         "Complete custom-built webshop with its own CMS — customisable from A to Z, without monthly Shopify fees.",
       description:
         "For VaMiPro we built a complete webshop fully from scratch: product catalogue, cart, discount codes and bundle deals, with its own CMS in which the client adjusts everything from A to Z — copy, products, promotions and campaigns. Custom built, so without the monthly cost of a Shopify subscription.",
+    },
+    "viesa-dashboard": {
+      slug: "viesa-dashboard",
+      category: "IN-HOUSE PLATFORM",
+      summary:
+        "Our own all-in-one sales and admin dashboard — from leads and quotes to invoices, AI audits and email campaigns.",
+      description:
+        "We built our own all-in-one dashboard that runs the entire business: leads and pipeline as a kanban, quotes with an AI generator that turn into invoices in one click, invoices with automatic reminders, calendar, tasks and email with a promo-mail builder. The calling module ships call scripts and AI suggestions, and the AI Visibility Audit asks ChatGPT, Claude, Gemini and Perplexity in parallel who they recommend in a niche — including a PDF report for the prospect. Rounded out with meeting notes, whiteboards, project notes, templates and global search: one environment, everything automated.",
     },
   },
   es: {
@@ -218,6 +239,14 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
         "Tienda online completa a medida con CMS propio: personalizable de la A a la Z, sin cuotas mensuales de Shopify.",
       description:
         "Para VaMiPro desarrollamos una tienda online completa totalmente a medida: catálogo de productos, carrito, códigos de descuento y packs combinados, con un CMS propio en el que el cliente ajusta todo de la A a la Z — textos, productos, promociones y campañas. Desarrollo a medida, sin el coste mensual de una suscripción a Shopify.",
+    },
+    "viesa-dashboard": {
+      slug: "viesa-dashboard",
+      category: "PLATAFORMA PROPIA",
+      summary:
+        "Nuestro propio panel todo en uno de ventas y administración: de leads y presupuestos a facturas, auditorías con IA y campañas de correo.",
+      description:
+        "Construimos nuestro propio panel todo en uno en el que funciona todo el negocio: leads y pipeline en kanban, presupuestos con generador de IA que se convierten en factura con un clic, facturas con recordatorios automáticos, agenda, tareas y correo con creador de promomails. El módulo de llamadas incluye guiones y sugerencias de IA, y la AI Visibility Audit pregunta en paralelo a ChatGPT, Claude, Gemini y Perplexity a quién recomiendan en un nicho, con informe PDF para el prospecto. Completado con actas, pizarras, notas de proyecto, plantillas y búsqueda global: un único entorno, todo automatizado.",
     },
   },
 };
