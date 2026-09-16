@@ -8,6 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { OrganizationJsonLd } from "@/components/seo/json-ld";
 import { ContactDialogProvider } from "@/components/contact/contact-dialog";
+import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -32,6 +33,7 @@ export default function RootLayout({
           Direct naar inhoud
         </a>
         <ContactDialogProvider>{children}</ContactDialogProvider>
+        <WhatsAppButton />
         <OrganizationJsonLd />
         <Analytics />
         <SpeedInsights />

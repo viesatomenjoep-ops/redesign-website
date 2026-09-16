@@ -16,6 +16,8 @@ export const site = {
   email: "contact@viesa-automations.nl",
   phone: "+31 6 83 05 28 75",
   phoneHref: "tel:+31683052875",
+  /** wa.me expects the number in international format, without "+" or spaces. */
+  whatsappHref: "https://wa.me/31683052875",
   kvk: "42070922",
   address: {
     city: "Breda",
