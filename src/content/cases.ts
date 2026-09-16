@@ -212,7 +212,11 @@ export function getOtherCases(locale: Locale, id: string, limit = 3): CaseStudy[
 /** Slug of `id` in every locale — feeds hreflang and the language switcher. */
 export function caseAlternateSlugs(id: string): Record<Locale, string> {
   return Object.fromEntries(
-    locales.map((l) => [l, copy[l][id].slug]),
+    locales.map((l) => {
+      const entry = copy[l][id];
+      if (!entry) throw new Error(`Missing ${l} copy for case "${id}"`);
+      return [l, entry.slug];
+    }),
   ) as Record<Locale, string>;
 }
 

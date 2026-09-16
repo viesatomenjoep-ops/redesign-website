@@ -460,6 +460,7 @@ const byLocale: Record<Locale, Service[]> = Object.fromEntries(
     locale,
     base.map((b) => {
       const c = copy[locale][b.id];
+      if (!c) throw new Error(`Missing ${locale} copy for service "${b.id}"`);
       return serviceSchema.parse({
         id: b.id,
         icon: b.icon,
@@ -468,7 +469,7 @@ const byLocale: Record<Locale, Service[]> = Object.fromEntries(
         title: c.title,
         intro: c.intro,
         imagePlaceholder: c.imagePlaceholder,
-        features: c.features.map((f, i) => ({ ...f, icon: b.featureIcons[i] })),
+        features: c.features.map((f, i) => ({ ...f, icon: b.featureIcons[i] ?? b.icon })),
       });
     }),
   ]),
@@ -489,7 +490,11 @@ export function findService(locale: Locale, slug: string): Service | undefined {
 /** Slug of `id` in every locale — feeds hreflang and the language switcher. */
 export function serviceAlternateSlugs(id: string): Record<Locale, string> {
   return Object.fromEntries(
-    locales.map((l) => [l, copy[l][id].slug]),
+    locales.map((l) => {
+      const entry = copy[l][id];
+      if (!entry) throw new Error(`Missing ${l} copy for service "${id}"`);
+      return [l, entry.slug];
+    }),
   ) as Record<Locale, string>;
 }
 

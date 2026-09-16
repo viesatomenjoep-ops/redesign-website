@@ -13,7 +13,7 @@ export function WhyViesa({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
   const reasons = t.whyViesa.reasons.map((reason, i) => ({
     ...reason,
-    icon: reasonIcons[i],
+    icon: reasonIcons[i] ?? "target",
   }));
 
   return (
