@@ -2,8 +2,12 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
 import { BookAuditButton } from "@/components/booking/book-audit-button";
 import { ContactLink } from "@/components/contact/contact-link";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 
-export function ContactCta() {
+export function ContactCta({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+
   return (
     <section id="contact" className="relative overflow-hidden px-8 py-32 text-center xs:px-[22px]">
       <svg
@@ -29,20 +33,19 @@ export function ContactCta() {
       </svg>
 
       <Reveal className="relative mx-auto max-w-[640px]">
-        <Eyebrow className="mb-6">Gratis audit</Eyebrow>
+        <Eyebrow className="mb-6">{t.contactCta.eyebrow}</Eyebrow>
         <h2 className="m-0 text-[clamp(2.125rem,5vw,3.625rem)] font-extrabold tracking-[-0.035em] text-paper">
-          Klaar om uw bedrijf te automatiseren?
+          {t.contactCta.title}
         </h2>
         <p className="mx-auto mb-10 mt-5 text-[17px] leading-relaxed text-muted">
-          Plan een gratis AI- &amp; automatiseringsaudit in. Binnen 30 minuten weet je waar
-          automatisering bij jou het meeste oplevert.
+          {t.contactCta.lede}
         </p>
 
         <div className="flex flex-col items-center gap-4">
-          <BookAuditButton />
+          <BookAuditButton locale={locale} />
           <p className="text-sm text-muted-2">
-            Liever eerst mailen?{" "}
-            <ContactLink className="text-muted">Stuur een bericht</ContactLink>
+            {t.contactCta.preferEmail}{" "}
+            <ContactLink className="text-muted">{t.contactCta.sendMessage}</ContactLink>
           </p>
         </div>
       </Reveal>

@@ -3,16 +3,19 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/marketing/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { tech, aiStudio } from "@/content/tech";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 
-export function TechStack() {
+export function TechStack({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   const loop = [...tech, ...tech];
 
   return (
     <Container width="narrow" className="py-24">
       <SectionHeading
-        eyebrow="Built with"
-        title="Een moderne, bewezen tech stack"
-        lede="Wij werken met technologieën die we per project bewust kiezen, aangevuld met de nieuwste AI-modellen voor slimme automatisering."
+        eyebrow={t.techStack.eyebrow}
+        title={t.techStack.title}
+        lede={t.techStack.lede}
       />
 
       <div
@@ -44,7 +47,7 @@ export function TechStack() {
       </div>
 
       <Reveal className="mt-6 border-t border-line pt-9 text-center">
-        <p className="eyebrow mb-6 text-navy">AI Studio</p>
+        <p className="eyebrow mb-6 text-navy">{t.techStack.aiStudio}</p>
         <div className="flex flex-wrap items-center justify-center gap-11">
           {aiStudio.map((item) => (
             <span

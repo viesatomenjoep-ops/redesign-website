@@ -14,6 +14,7 @@ export const en: Dictionary = {
     home: "home",
     backHome: "Back to home",
     toHome: "Go to home",
+    skipToContent: "Skip to content",
   },
   header: {
     ratingOnGoogle: "{value} on Google",
@@ -141,6 +142,25 @@ export const en: Dictionary = {
     privacy: "Privacy",
     cookies: "Cookies",
   },
+  serviceVisual: {
+    chatQuestion: "Can I still exchange my size?",
+    chatReply: "Of course, I'll sort it right away.",
+    chatConfirm: "Return label sent ✓",
+    checklist: [
+      "Quote approved",
+      "Order in production",
+      "Invoice sent",
+      "Delivery scheduled",
+    ],
+  },
+  detail: {
+    backToPortfolio: "Back to portfolio",
+    aboutProject: "About this project",
+    moreProjects: "More projects",
+    backToServices: "Back to services",
+    whatThisMeans: "What this means for you",
+    otherServices: "Other services",
+  },
   casesPage: {
     eyebrow: "Portfolio",
     title: "Built for every business",
@@ -170,6 +190,7 @@ export const en: Dictionary = {
       "This legal text is only available in Dutch. The Dutch version is the authoritative one.",
   },
   seo: {
+    ogEyebrow: "Automation · AI agents · Custom software",
     titleTemplate: "{title} — {name}",
     defaultTitle: "Viesa Automations — Automation, AI agents & custom software",
     description:

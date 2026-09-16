@@ -2,30 +2,24 @@ import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { LucideIcon } from "@/components/ui/lucide-icon";
 import { Reveal } from "@/components/motion/reveal";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 
-const reasons = [
-  {
-    icon: "link-2",
-    title: "Alles werkt samen",
-    text: "Onze oplossingen sluiten direct aan op de systemen die u al gebruikt. Geen losse silo's, maar één werkend geheel.",
-  },
-  {
-    icon: "search",
-    title: "AI & SEO Geoptimaliseerd",
-    text: "Websites en content die goed scoren in Google én zichtbaar zijn in AI-platforms zoals ChatGPT en Gemini.",
-  },
-  {
-    icon: "target",
-    title: "100% Maatwerk ROI-focus",
-    text: "Elke oplossing wordt gebouwd met een concreet doel: meetbaar minder handmatig werk en meer rendement.",
-  },
-];
+/** Icons are locale-independent; the copy comes from `t.whyViesa.reasons`,
+ *  which is ordered to match this list. */
+const reasonIcons = ["link-2", "search", "target"];
 
-export function WhyViesa() {
+export function WhyViesa({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const reasons = t.whyViesa.reasons.map((reason, i) => ({
+    ...reason,
+    icon: reasonIcons[i],
+  }));
+
   return (
     <section
       id="waarom"
-      data-screen-label="Waarom Viesa"
+      data-screen-label={t.sectionLabels.whyViesa}
       className="relative overflow-hidden bg-navy"
     >
       <div
@@ -39,16 +33,16 @@ export function WhyViesa() {
 
       <Container width="content" className="relative py-24">
         <Reveal className="mx-auto mb-14 max-w-[640px] text-center">
-          <Eyebrow className="mb-5">Waarom Viesa</Eyebrow>
+          <Eyebrow className="mb-5">{t.whyViesa.eyebrow}</Eyebrow>
           <h2 className="m-0 text-[clamp(1.875rem,3.8vw,2.75rem)] font-extrabold text-paper">
-            Waarom bedrijven voor ons kiezen
+            {t.whyViesa.title}
           </h2>
         </Reveal>
 
         <div className="grid gap-5 nav:grid-cols-3">
           {reasons.map((reason, i) => (
             <Reveal
-              key={reason.title}
+              key={reason.icon}
               as="article"
               delay={i * 80}
               className="group flex flex-col rounded-[20px] border border-line-dark bg-navy-700/60 p-8 backdrop-blur-sm transition duration-300 ease-[var(--ease-out-quint)] hover:-translate-y-1.5 hover:border-coral"

@@ -5,18 +5,29 @@ import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { nav } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
+import { getNav } from "@/lib/nav";
+import { useI18n } from "@/components/i18n/locale-provider";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { Button } from "@/components/ui/button";
 import { useContactDialog } from "@/components/contact/contact-dialog";
 
-export function MobileMenu({ light }: { light: boolean }) {
+type MobileMenuProps = {
+  light: boolean;
+  locale: Locale;
+  alternates?: Partial<Record<Locale, string>>;
+};
+
+export function MobileMenu({ light, locale, alternates }: MobileMenuProps) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const { open: openContact } = useContactDialog();
+  const nav = getNav(locale);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
-        aria-label="Menu"
+        aria-label={t.common.menu}
         className={cn(
           "inline-flex items-center justify-center rounded-md p-2 nav:hidden",
           light ? "text-navy" : "text-paper",
@@ -32,8 +43,8 @@ export function MobileMenu({ light }: { light: boolean }) {
           aria-describedby={undefined}
         >
           <div className="mb-2 flex items-center justify-between">
-            <Dialog.Title className="eyebrow text-muted-2">Menu</Dialog.Title>
-            <Dialog.Close aria-label="Sluiten" className="rounded p-1 text-paper">
+            <Dialog.Title className="eyebrow text-muted-2">{t.common.menu}</Dialog.Title>
+            <Dialog.Close aria-label={t.common.close} className="rounded p-1 text-paper">
               <X className="h-5 w-5" />
             </Dialog.Close>
           </div>
@@ -57,8 +68,12 @@ export function MobileMenu({ light }: { light: boolean }) {
                 openContact();
               }}
             >
-              Plan een strategiegesprek
+              {t.common.planCall}
             </Button>
+            <LanguageSwitcher
+              alternates={alternates}
+              className="mt-4 justify-center"
+            />
           </div>
         </Dialog.Content>
       </Dialog.Portal>

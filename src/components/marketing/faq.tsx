@@ -5,17 +5,21 @@ import { Minus, Plus } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
-import { faqItems } from "@/content/faq";
+import { getFaqItems } from "@/content/faq";
+import { useI18n } from "@/components/i18n/locale-provider";
 
 export function Faq() {
+  const { locale, t } = useI18n();
+  const faqItems = getFaqItems(locale);
+
   return (
     <Container width="narrow" id="faq" className="py-24">
       <Reveal className="mb-12 text-center">
         <Eyebrow tone="navy" className="mb-5">
-          Veelgestelde vragen
+          {t.faq.eyebrow}
         </Eyebrow>
         <h2 className="m-0 text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold text-ink">
-          Nog vragen?
+          {t.faq.title}
         </h2>
       </Reveal>
 

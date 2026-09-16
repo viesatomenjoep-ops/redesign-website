@@ -1,21 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { LegalPage } from "@/components/legal/legal-page";
-import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
-
-export const metadata: Metadata = buildMetadata({
-  title: "Cookieverklaring",
-  description: "Welke cookies en lokale opslag deze website gebruikt — en waarom er geen cookiebanner is.",
-  path: "/cookies",
-});
+import { type Locale } from "@/lib/i18n";
+import { sectionPath } from "@/lib/route-slugs";
 
 // NOTE: accurate as long as analytics stays cookieless. If a cookie-based tool
 // (e.g. GA4) is added later, this page and a consent banner both need revisiting.
 
-export default function CookiesPage() {
+/** Prose only — see the note in `privacy-body.tsx` about staying Dutch. */
+export function CookiesBody({ locale }: { locale: Locale }) {
   return (
-    <LegalPage eyebrow="Juridisch" title="Cookieverklaring" updated="2026-08-27">
+    <>
       <p>
         Deze verklaring beschrijft welke cookies en vergelijkbare technieken {site.name} op deze
         website gebruikt.
@@ -67,9 +61,9 @@ export default function CookiesPage() {
       <h2>6. Meer informatie</h2>
       <p>
         Hoe wij met persoonsgegevens omgaan lees je in onze{" "}
-        <Link href="/privacy">privacyverklaring</Link>. Vragen? Mail{" "}
+        <Link href={sectionPath("privacy", locale)}>privacyverklaring</Link>. Vragen? Mail{" "}
         <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
-    </LegalPage>
+    </>
   );
 }

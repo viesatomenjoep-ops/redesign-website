@@ -3,17 +3,20 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { CaseStudy } from "@/content/schema";
 import { cn } from "@/lib/utils";
+import type { Locale } from "@/lib/i18n";
+import { detailPath } from "@/lib/route-slugs";
 
 type CaseCardProps = {
   study: CaseStudy;
+  locale: Locale;
   className?: string;
   imageFit?: "cover" | "contain";
 };
 
-export function CaseCard({ study, className, imageFit = "cover" }: CaseCardProps) {
+export function CaseCard({ study, locale, className, imageFit = "cover" }: CaseCardProps) {
   return (
     <Link
-      href={`/cases/${study.slug}`}
+      href={detailPath("cases", locale, study.slug)}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-[0_18px_44px_-26px_rgba(17,29,54,0.3)] transition duration-300 ease-[var(--ease-out-quint)] hover:-translate-y-2 hover:shadow-[0_30px_60px_-26px_rgba(17,29,54,0.4)]",
         className,

@@ -5,37 +5,43 @@ import { SectionHeading } from "@/components/marketing/section-heading";
 import { Carousel } from "@/components/ui/carousel";
 import { CaseCard } from "@/components/marketing/case-card";
 import { Reveal } from "@/components/motion/reveal";
-import { cases } from "@/content/cases";
+import { getCases } from "@/content/cases";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
+import { sectionPath } from "@/lib/route-slugs";
 
-export function FeaturedCases() {
+export function FeaturedCases({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const cases = getCases(locale);
+
   return (
     <div id="werk">
       <Container width="narrow" className="py-24 pb-8">
         <SectionHeading
-          eyebrow="Cases"
-          title="Gebouwd voor elk bedrijf"
-          lede="Echte projecten voor echte bedrijven — van e-commerce tot dienstverlening en alles daartussenin."
+          eyebrow={t.featuredCases.eyebrow}
+          title={t.featuredCases.title}
+          lede={t.featuredCases.lede}
         />
       </Container>
 
       <Reveal className="mx-auto max-w-[900px] px-5">
         <Carousel
-          ariaLabel="Uitgelichte cases"
+          ariaLabel={t.featuredCases.carouselLabel}
           slideClassName="basis-full sm:basis-1/2"
           options={{ align: "start" }}
         >
           {cases.map((study) => (
-            <CaseCard key={study.slug} study={study} />
+            <CaseCard key={study.slug} study={study} locale={locale} />
           ))}
         </Carousel>
       </Reveal>
 
       <div className="py-16 text-center">
         <Link
-          href="/cases"
+          href={sectionPath("cases", locale)}
           className="inline-flex items-center gap-2 text-[15px] font-semibold text-ink transition hover:text-coral"
         >
-          Bekijk volledig portfolio <ArrowUpRight className="h-4 w-4" />
+          {t.featuredCases.viewAll} <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
     </div>

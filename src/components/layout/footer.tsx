@@ -2,9 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { nav, site } from "@/lib/site";
+import { site } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
+import { getNav } from "@/lib/nav";
+import { sectionPath } from "@/lib/route-slugs";
+import { getDictionary, interpolate } from "@/lib/dictionaries";
 
-export function Footer() {
+export function Footer({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const nav = getNav(locale);
+
   return (
     <footer className="border-t border-line-dark bg-navy-800 px-8 pb-10 pt-20 xs:px-[22px]">
       <Container width="wide" className="flex flex-wrap justify-between gap-10 px-0">
@@ -28,7 +35,7 @@ export function Footer() {
 
         <div className="flex flex-wrap gap-14 text-sm leading-8 text-muted-2">
           <div>
-            <div className="mb-2 font-bold text-paper">Contact</div>
+            <div className="mb-2 font-bold text-paper">{t.footer.contact}</div>
             <div className="flex items-center gap-2">
               <Mail className="h-3.5 w-3.5 shrink-0" />
               <a href={`mailto:${site.email}`} className="hover:text-coral">
@@ -51,7 +58,7 @@ export function Footer() {
           </div>
 
           <div>
-            <div className="mb-2 font-bold text-paper">Sitemap</div>
+            <div className="mb-2 font-bold text-paper">{t.footer.sitemap}</div>
             {nav.map((item) => (
               <div key={item.href}>
                 <Link href={item.href} className="hover:text-coral">
@@ -62,7 +69,7 @@ export function Footer() {
           </div>
 
           <div>
-            <div className="mb-2 font-bold text-paper">Social</div>
+            <div className="mb-2 font-bold text-paper">{t.footer.social}</div>
             <a
               href={site.social.instagram}
               target="_blank"
@@ -80,14 +87,17 @@ export function Footer() {
         className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-line-dark px-0 pt-6 text-[13px] text-[#4E5D75]"
       >
         <span>
-          © {new Date().getFullYear()} {site.name}. Alle rechten voorbehouden.
+          {interpolate(t.footer.rights, {
+            year: new Date().getFullYear(),
+            name: site.name,
+          })}
         </span>
         <div className="flex flex-wrap items-center gap-4">
-          <Link href="/privacy" className="hover:text-coral">
-            Privacy
+          <Link href={sectionPath("privacy", locale)} className="hover:text-coral">
+            {t.footer.privacy}
           </Link>
-          <Link href="/cookies" className="hover:text-coral">
-            Cookies
+          <Link href={sectionPath("cookies", locale)} className="hover:text-coral">
+            {t.footer.cookies}
           </Link>
           <span className="eyebrow text-[10.5px]">{site.tagline}</span>
         </div>

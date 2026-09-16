@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
 import { ContactForm } from "@/components/contact/contact-form";
 
 type ContactDialogContextValue = {
@@ -19,6 +20,7 @@ export function useContactDialog() {
 }
 
 export function ContactDialogProvider({ children }: { children: React.ReactNode }) {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
   const value = useMemo<ContactDialogContextValue>(
@@ -43,16 +45,16 @@ export function ContactDialogProvider({ children }: { children: React.ReactNode 
             aria-describedby={undefined}
           >
             <div className="mb-1.5 flex items-center justify-between">
-              <span className="eyebrow text-navy">Contact</span>
+              <span className="eyebrow text-navy">{t.contactDialog.eyebrow}</span>
               <Dialog.Close
-                aria-label="Sluiten"
+                aria-label={t.common.close}
                 className="rounded p-1 text-[#8A8375] transition hover:text-coral"
               >
                 <X className="h-5 w-5" />
               </Dialog.Close>
             </div>
             <Dialog.Title className="mb-5 text-[22px] font-extrabold tracking-tight text-ink">
-              Neem contact op
+              {t.contactDialog.title}
             </Dialog.Title>
             <ContactForm onSuccess={() => undefined} />
           </Dialog.Content>

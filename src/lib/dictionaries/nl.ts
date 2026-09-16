@@ -21,6 +21,7 @@ export const nl = {
     home: "home",
     backHome: "Terug naar home",
     toHome: "Naar home",
+    skipToContent: "Direct naar inhoud",
   },
   header: {
     /** {value} = the rating, already formatted for the locale. */
@@ -152,6 +153,25 @@ export const nl = {
     privacy: "Privacy",
     cookies: "Cookies",
   },
+  serviceVisual: {
+    chatQuestion: "Kan ik mijn maat nog ruilen?",
+    chatReply: "Zeker, ik regel het direct.",
+    chatConfirm: "Ruilbon verstuurd ✓",
+    checklist: [
+      "Offerte goedgekeurd",
+      "Order in productie",
+      "Factuur verzonden",
+      "Levering gepland",
+    ],
+  },
+  detail: {
+    backToPortfolio: "Terug naar portfolio",
+    aboutProject: "Over dit project",
+    moreProjects: "Meer projecten",
+    backToServices: "Terug naar diensten",
+    whatThisMeans: "Wat dit voor u betekent",
+    otherServices: "Andere diensten",
+  },
   casesPage: {
     eyebrow: "Portfolio",
     title: "Gebouwd voor elk bedrijf",
@@ -184,6 +204,7 @@ export const nl = {
   },
   seo: {
     /** {title} = page title, {name} = site name. */
+    ogEyebrow: "Automatisering · AI-agents · Maatwerk software",
     titleTemplate: "{title} — {name}",
     defaultTitle: "Viesa Automations — Automatisering, AI-agents & maatwerk software",
     description:

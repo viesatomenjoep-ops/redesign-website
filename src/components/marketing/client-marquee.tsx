@@ -1,15 +1,16 @@
 import Image from "next/image";
 import { clients } from "@/content/tech";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 
 /** Infinite logo marquee. The track is duplicated so the -50% keyframe loops seamlessly. */
-export function ClientMarquee() {
+export function ClientMarquee({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   const loop = [...clients, ...clients];
 
   return (
     <div className="pt-14">
-      <p className="eyebrow mb-8 text-center text-[#7A8699]">
-        Ervaring bij toonaangevende organisaties
-      </p>
+      <p className="eyebrow mb-8 text-center text-[#7A8699]">{t.clientMarquee.title}</p>
       <div
         className="flex w-full justify-center overflow-hidden"
         style={{

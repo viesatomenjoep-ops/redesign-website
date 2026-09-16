@@ -1,22 +1,19 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { LegalPage } from "@/components/legal/legal-page";
-import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
-
-export const metadata: Metadata = buildMetadata({
-  title: "Privacyverklaring",
-  description:
-    "Hoe Viesa Automations omgaat met persoonsgegevens die via deze website worden verwerkt.",
-  path: "/privacy",
-});
 
 // NOTE: template based on how the site technically works. Have it reviewed by a
 // lawyer / privacy advisor before launch (see IMPLEMENTATION_PLAN §5).
 
-export default function PrivacyPage() {
+/**
+ * Prose only — the page chrome lives in `<LegalPage>`.
+ *
+ * Deliberately Dutch in every locale: a machine-translated privacy statement is
+ * not something to put in front of visitors. `<LegalPage showDutchOnlyNotice>`
+ * explains that to en/es readers.
+ */
+export function PrivacyBody() {
   return (
-    <LegalPage eyebrow="Juridisch" title="Privacyverklaring" updated="2026-08-27">
+    <>
       <p>
         Deze privacyverklaring legt uit welke persoonsgegevens {site.name} verwerkt wanneer je deze
         website bezoekt of contact met ons opneemt, met welk doel dat gebeurt en welke rechten je
@@ -157,6 +154,6 @@ export default function PrivacyPage() {
         Vragen over deze privacyverklaring? Mail ons via{" "}
         <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
-    </LegalPage>
+    </>
   );
 }

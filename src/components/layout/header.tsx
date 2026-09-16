@@ -5,16 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { nav, site } from "@/lib/site";
+import { site } from "@/lib/site";
+import { htmlLang, localePath, type Locale } from "@/lib/i18n";
+import { getNav } from "@/lib/nav";
+import { interpolate } from "@/lib/dictionaries";
+import { useI18n } from "@/components/i18n/locale-provider";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { ContactButton } from "@/components/contact/contact-button";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 
 type HeaderProps = {
   /** "overlay" sits transparent over a dark hero; "solid" is for inner pages. */
   variant?: "overlay" | "solid";
+  locale: Locale;
+  /** This page's URL per locale, handed to the language switcher. */
+  alternates?: Partial<Record<Locale, string>>;
 };
 
-export function Header({ variant = "overlay" }: HeaderProps) {
+export function Header({ variant = "overlay", locale, alternates }: HeaderProps) {
+  const { t } = useI18n();
   const [scrolled, setScrolled] = useState(variant === "solid");
 
   useEffect(() => {
@@ -26,6 +35,10 @@ export function Header({ variant = "overlay" }: HeaderProps) {
   }, [variant]);
 
   const light = scrolled;
+  const home = localePath(locale, "/");
+  /** "" for Dutch (root), "/en" elsewhere — so hash links stay on the right home. */
+  const homeBase = home === "/" ? "" : home;
+  const nav = getNav(locale);
 
   return (
     <header className="fixed inset-x-0 top-0 z-[90]">
@@ -38,9 +51,9 @@ export function Header({ variant = "overlay" }: HeaderProps) {
         )}
       >
         <Link
-          href="/#top"
+          href={`${homeBase}/#top`}
           className="flex items-center gap-[11px]"
-          aria-label={`${site.name} — home`}
+          aria-label={`${site.name} — ${t.common.home}`}
         >
           <Image
             src="/uploads/viesa-hex.png"
@@ -65,7 +78,7 @@ export function Header({ variant = "overlay" }: HeaderProps) {
 
         <nav className="hidden items-center gap-8 nav:flex">
           <Link
-            href="/#testimonial"
+            href={`${homeBase}/#testimonial`}
             className={cn(
               "inline-flex items-center gap-[7px] text-[13px] font-semibold transition-colors",
               light ? "text-ink-soft hover:text-navy" : "text-muted-3 hover:text-coral",
@@ -76,7 +89,11 @@ export function Header({ variant = "overlay" }: HeaderProps) {
                 <Star key={i} className="h-3 w-3 fill-current" />
               ))}
             </span>
-            <span>{site.rating.value.toLocaleString("nl-NL")} op Google</span>
+            <span>
+              {interpolate(t.header.ratingOnGoogle, {
+                value: site.rating.value.toLocaleString(htmlLang[locale]),
+              })}
+            </span>
           </Link>
           {nav.map((item) => (
             <Link
@@ -93,11 +110,16 @@ export function Header({ variant = "overlay" }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher
+            alternates={alternates}
+            light={light}
+            className="hidden nav:flex"
+          />
           <ContactButton
             variant={light ? "navy" : "paper"}
             className="hidden xs:inline-flex"
           />
-          <MobileMenu light={light} />
+          <MobileMenu light={light} locale={locale} alternates={alternates} />
         </div>
       </div>
     </header>

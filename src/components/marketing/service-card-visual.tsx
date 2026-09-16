@@ -4,10 +4,14 @@
  * chat, flow graph, skeleton, KPI bars, checklist) at a fraction of the code.
  * All pure CSS; the reduced-motion reset in globals.css freezes them.
  */
+import type { Locale } from "@/lib/i18n";
+import { getDictionary, type Dictionary } from "@/lib/dictionaries";
+
+type VisualProps = { t: Dictionary };
 
 const panel = "relative h-56 overflow-hidden border-y border-[#EEEBE2] bg-paper-2";
 
-function Waveform() {
+function Waveform(_: VisualProps) {
   const bars = [8, 13, 10, 17, 23, 15, 27, 19, 33, 25, 37, 29, 23, 17, 12, 20, 14];
   return (
     <div className={panel}>
@@ -31,14 +35,14 @@ function Waveform() {
   );
 }
 
-function Chat() {
+function Chat({ t }: VisualProps) {
   const bubbles = [
-    { side: "end", bg: "bg-navy text-paper", text: "Kan ik mijn maat nog ruilen?", d: 0 },
-    { side: "start", bg: "bg-white border border-line text-ink", text: "Zeker, ik regel het direct.", d: 1.8 },
+    { side: "end", bg: "bg-navy text-paper", text: t.serviceVisual.chatQuestion, d: 0 },
+    { side: "start", bg: "bg-white border border-line text-ink", text: t.serviceVisual.chatReply, d: 1.8 },
     {
       side: "start",
       bg: "bg-coral/10 border border-coral/40 text-ink",
-      text: "Ruilbon verstuurd ✓",
+      text: t.serviceVisual.chatConfirm,
       d: 3.6,
     },
   ] as const;
@@ -61,7 +65,7 @@ function Chat() {
   );
 }
 
-function Flow() {
+function Flow(_: VisualProps) {
   return (
     <div className={panel}>
       <svg viewBox="0 0 240 190" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
@@ -97,7 +101,7 @@ function Flow() {
   );
 }
 
-function Skeleton() {
+function Skeleton(_: VisualProps) {
   return (
     <div className={panel}>
       <div className="absolute inset-0 flex flex-col justify-center gap-2.5 px-8">
@@ -122,7 +126,7 @@ function Skeleton() {
   );
 }
 
-function Kpi() {
+function Kpi(_: VisualProps) {
   return (
     <div className={panel}>
       <div className="absolute inset-x-7 top-7 flex flex-col gap-3.5">
@@ -160,8 +164,8 @@ function Kpi() {
   );
 }
 
-function Checklist() {
-  const items = ["Offerte goedgekeurd", "Order in productie", "Factuur verzonden", "Levering gepland"];
+function Checklist({ t }: VisualProps) {
+  const items = t.serviceVisual.checklist;
   return (
     <div className={panel}>
       <div className="absolute inset-0 flex flex-col justify-center gap-3 px-8">
@@ -186,7 +190,7 @@ function Checklist() {
   );
 }
 
-const map: Record<string, () => React.JSX.Element> = {
+const map: Record<string, (props: VisualProps) => React.JSX.Element> = {
   "ai-calling-agents": Waveform,
   "ai-chatbots": Chat,
   "workflow-automatisering": Flow,
@@ -195,7 +199,12 @@ const map: Record<string, () => React.JSX.Element> = {
   "software-portalen": Checklist,
 };
 
-export function ServiceCardVisual({ slug }: { slug: string }) {
+/**
+ * `slug` here is the stable service **id** (the Dutch slug), not the localised
+ * URL slug — the map below predates translated slugs and keying it on the
+ * public slug would silently fall through to `Skeleton` for en/es.
+ */
+export function ServiceCardVisual({ slug, locale }: { slug: string; locale: Locale }) {
   const Visual = map[slug] ?? Skeleton;
-  return <Visual />;
+  return <Visual t={getDictionary(locale)} />;
 }

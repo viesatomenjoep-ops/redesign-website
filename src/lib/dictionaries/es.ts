@@ -16,6 +16,7 @@ export const es: Dictionary = {
     home: "inicio",
     backHome: "Volver al inicio",
     toHome: "Ir al inicio",
+    skipToContent: "Ir al contenido",
   },
   header: {
     ratingOnGoogle: "{value} en Google",
@@ -143,6 +144,25 @@ export const es: Dictionary = {
     privacy: "Privacidad",
     cookies: "Cookies",
   },
+  serviceVisual: {
+    chatQuestion: "¿Todavía puedo cambiar mi talla?",
+    chatReply: "Por supuesto, lo gestiono ahora mismo.",
+    chatConfirm: "Vale de cambio enviado ✓",
+    checklist: [
+      "Presupuesto aprobado",
+      "Pedido en producción",
+      "Factura enviada",
+      "Entrega programada",
+    ],
+  },
+  detail: {
+    backToPortfolio: "Volver al portfolio",
+    aboutProject: "Sobre este proyecto",
+    moreProjects: "Más proyectos",
+    backToServices: "Volver a los servicios",
+    whatThisMeans: "Qué significa esto para usted",
+    otherServices: "Otros servicios",
+  },
   casesPage: {
     eyebrow: "Portfolio",
     title: "Construido para cualquier empresa",
@@ -172,6 +192,7 @@ export const es: Dictionary = {
       "Este texto legal solo está disponible en neerlandés. La versión neerlandesa es la que prevalece.",
   },
   seo: {
+    ogEyebrow: "Automatización · Agentes de IA · Software a medida",
     titleTemplate: "{title} — {name}",
     defaultTitle: "Viesa Automations — Automatización, agentes de IA y software a medida",
     description:

@@ -33,9 +33,3 @@ export const site = {
     source: "Google",
   },
 } as const;
-
-export const nav = [
-  { label: "Diensten", href: "/#diensten" },
-  { label: "Cases", href: "/cases" },
-  { label: "Contact", href: "/#contact" },
-] as const;

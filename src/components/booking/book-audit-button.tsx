@@ -5,12 +5,17 @@ import { getCalApi } from "@calcom/embed-react";
 import { track } from "@vercel/analytics";
 import { buttonClasses } from "@/components/ui/button";
 import { calcom, calcomBrandVars, calcomEmbedConfig } from "@/lib/calcom";
+import type { Locale } from "@/lib/i18n";
+import { sectionPath } from "@/lib/route-slugs";
+import { useI18n } from "@/components/i18n/locale-provider";
 import { cn } from "@/lib/utils";
 
 type BookAuditButtonProps = {
   children?: React.ReactNode;
   className?: string;
-  /** Where to send the visitor after a successful booking. */
+  locale: Locale;
+  /** Where to send the visitor after a successful booking.
+   *  Defaults to this locale's thank-you page. */
   redirectTo?: string;
 };
 
@@ -22,10 +27,14 @@ type BookAuditButtonProps = {
  * and leaves a stuck loader on close).
  */
 export function BookAuditButton({
-  children = "Vraag gratis audit aan",
+  children,
   className,
-  redirectTo = "/bedankt",
+  locale,
+  redirectTo,
 }: BookAuditButtonProps) {
+  const { t } = useI18n();
+  const target = redirectTo ?? sectionPath("thankYou", locale);
+
   useEffect(() => {
     let cancelled = false;
 
@@ -35,7 +44,7 @@ export function BookAuditButton({
       } catch {
         /* analytics optional */
       }
-      if (redirectTo) window.location.href = redirectTo;
+      if (target) window.location.href = target;
     };
 
     (async () => {
@@ -58,7 +67,7 @@ export function BookAuditButton({
         cal("off", { action: "bookingSuccessful", callback: onBooked });
       });
     };
-  }, [redirectTo]);
+  }, [target]);
 
   return (
     <button
@@ -69,7 +78,7 @@ export function BookAuditButton({
       data-cal-config={JSON.stringify(calcomEmbedConfig)}
       className={cn(buttonClasses({ variant: "coral", size: "lg" }), className)}
     >
-      {children}
+      {children ?? t.booking.requestAudit}
     </button>
   );
 }

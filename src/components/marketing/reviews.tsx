@@ -4,12 +4,14 @@ import { Carousel } from "@/components/ui/carousel";
 import { Reveal } from "@/components/motion/reveal";
 import { Typewriter } from "@/components/motion/typewriter";
 import { ReviewCard, type DisplayReview } from "@/components/marketing/review-card";
-import { curatedReviews, featuredTestimonial } from "@/content/reviews";
+import { getCuratedReviews, getFeaturedTestimonial } from "@/content/reviews";
 import { getGoogleReviews } from "@/lib/google-reviews";
 import { site } from "@/lib/site";
+import { htmlLang, type Locale } from "@/lib/i18n";
+import { getDictionary, interpolate } from "@/lib/dictionaries";
 
-function curatedToDisplay(): DisplayReview[] {
-  return curatedReviews.map((r, i) => ({
+function curatedToDisplay(locale: Locale): DisplayReview[] {
+  return getCuratedReviews(locale).map((r, i) => ({
     id: `curated-${i}`,
     author: r.author,
     rating: 5,
@@ -18,7 +20,9 @@ function curatedToDisplay(): DisplayReview[] {
   }));
 }
 
-export async function Reviews() {
+export async function Reviews({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const featuredTestimonial = getFeaturedTestimonial(locale);
   const live = await getGoogleReviews();
 
   const rating = live?.rating ?? site.rating.value;
@@ -34,23 +38,21 @@ export async function Reviews() {
           text: r.text,
           meta: r.relativeTime,
         }))
-      : curatedToDisplay();
+      : curatedToDisplay(locale);
 
   return (
     <Container width="content" id="testimonial" className="py-20">
       <Reveal className="mx-auto mb-7 max-w-[640px] text-center">
-        <p className="eyebrow mb-4 text-navy">Klantbeoordelingen</p>
+        <p className="eyebrow mb-4 text-navy">{t.reviews.eyebrow}</p>
         <h2 className="m-0 text-[clamp(1.875rem,3.8vw,2.75rem)] font-extrabold text-ink">
-          Vijf sterren, van iedereen die ons beoordeelde
+          {t.reviews.title}
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-muted-ink">
-          We tonen ze allemaal, niet alleen de mooiste.
-        </p>
+        <p className="mt-4 text-base leading-relaxed text-muted-ink">{t.reviews.lede}</p>
       </Reveal>
 
       <div className="mb-7 flex flex-wrap items-center justify-center gap-3.5">
         <span className="text-[19px] font-extrabold text-ink">
-          {rating.toLocaleString("nl-NL", {
+          {rating.toLocaleString(htmlLang[locale], {
             minimumFractionDigits: 1,
             maximumFractionDigits: 1,
           })}
@@ -60,7 +62,9 @@ export async function Reviews() {
             <Star key={i} className="h-4 w-4 fill-current" />
           ))}
         </span>
-        <span className="text-[13.5px] text-muted-ink">{count} Google reviews</span>
+        <span className="text-[13.5px] text-muted-ink">
+          {interpolate(t.reviews.googleReviews, { count })}
+        </span>
         {live?.mapsUrl ? (
           <a
             href={live.mapsUrl}
@@ -68,13 +72,13 @@ export async function Reviews() {
             rel="noopener noreferrer"
             className="text-[13.5px] font-semibold text-navy underline underline-offset-2 hover:text-coral"
           >
-            Bekijk op Google
+            {t.reviews.viewOnGoogle}
           </a>
         ) : null}
       </div>
 
       <Carousel
-        ariaLabel="Klantbeoordelingen"
+        ariaLabel={t.reviews.carouselLabel}
         slideClassName="basis-full sm:basis-1/2 nav:basis-1/3"
       >
         {cards.map((review) => (
