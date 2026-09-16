@@ -22,7 +22,7 @@ const base: CaseBase[] = [
   { id: "wehkamp", name: "Wehkamp", image: "/uploads/card-wehkamp.jpg" },
   { id: "ibiza", name: "Ibiza Mi Vida", image: "/uploads/pasted-1786565066955-0.png" },
   { id: "rooster", name: "Rooster", image: "/uploads/case-rooster.jpeg" },
-  { id: "equivest", name: "Equivest", image: "/uploads/case-equivest.jpeg" },
+  { id: "equivest", name: "Equivest", image: "/uploads/case-equivest-site.jpg" },
   { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },
   { id: "nunhems", name: "Nunhems", image: "/uploads/case-nunhems.jpg" },
   { id: "schippers", name: "MS Schippers", image: "/uploads/card-schippers.jpg" },
@@ -53,10 +53,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     equivest: {
       slug: "equivest",
-      category: "FINTECH",
-      summary: "Platform voor investeringsbeheer met heldere, realtime inzichten.",
+      category: "PLATFORM & CMS",
+      summary:
+        "Meertalig platform voor de handel in elite sportpaarden — custom CMS, investeerdersportaal en social-media-builder.",
       description:
-        "Een platform voor investeringsbeheer, gebouwd met een focus op heldere, realtime inzichten in portefeuilles en prestaties.",
+        "Voor Equivest bouwden we het volledige platform: een meertalige website (EN/NL/DE/ES), een custom CMS met ingebouwde social-media-builder, een afgeschermd investeerdersportaal en een privécollectie achter toegangscode. Van paardencatalogus tot referenties — alles wordt beheerd vanuit één omgeving.",
     },
     robeco: {
       slug: "robeco",
@@ -104,10 +105,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     equivest: {
       slug: "equivest",
-      category: "FINTECH",
-      summary: "Investment management platform with clear, real-time insights.",
+      category: "PLATFORM & CMS",
+      summary:
+        "Multilingual platform for trading elite sport horses — custom CMS, investors portal and social media builder.",
       description:
-        "An investment management platform, built with a focus on clear, real-time insight into portfolios and performance.",
+        "For Equivest we built the entire platform: a multilingual website (EN/NL/DE/ES), a custom CMS with a built-in social media builder, a gated investors portal and a private collection behind an access code. From the horse catalogue to references — everything is managed from a single environment.",
     },
     robeco: {
       slug: "robeco",
@@ -157,10 +159,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     equivest: {
       slug: "equivest",
-      category: "FINTECH",
-      summary: "Plataforma de gestión de inversiones con información clara y en tiempo real.",
+      category: "PLATAFORMA Y CMS",
+      summary:
+        "Plataforma multilingüe para la compraventa de caballos de deporte de élite: CMS a medida, portal de inversores y creador de contenido social.",
       description:
-        "Una plataforma de gestión de inversiones, desarrollada con el foco puesto en ofrecer información clara y en tiempo real sobre las carteras y su rendimiento.",
+        "Para Equivest desarrollamos la plataforma completa: una web multilingüe (EN/NL/DE/ES), un CMS a medida con creador de contenido para redes sociales integrado, un portal privado para inversores y una colección privada protegida con código de acceso. Del catálogo de caballos a las referencias: todo se gestiona desde un único entorno.",
     },
     robeco: {
       slug: "robeco",
