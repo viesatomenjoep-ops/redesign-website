@@ -9,7 +9,14 @@ import { defaultLocale, locales, type Locale } from "@/lib/i18n";
  *  `slug` is what appears in the URL and differs per locale. Company names and
  *  imagery are locale-independent and live in `base`. */
 
-type CaseBase = { id: string; name: string; image: string | null; gallery?: string[] };
+type CaseBase = {
+  id: string;
+  name: string;
+  image: string | null;
+  gallery?: string[];
+  /** Live site. Omitted for the internal dashboard, which has nothing public. */
+  url?: string;
+};
 
 type CaseCopy = {
   slug: string;
@@ -19,11 +26,17 @@ type CaseCopy = {
 };
 
 const base: CaseBase[] = [
-  { id: "wehkamp", name: "Wehkamp", image: "/uploads/card-wehkamp.jpg" },
+  {
+    id: "wehkamp",
+    name: "Wehkamp",
+    image: "/uploads/card-wehkamp.jpg",
+    url: "https://www.wehkamp.nl",
+  },
   {
     id: "ibiza",
     name: "Ibiza Mi Vida",
     image: "/uploads/case-ibiza-site.jpg",
+    url: "https://www.ibizamivida.com",
     gallery: [
       "/uploads/case-ibiza-clubs.jpg",
       "/uploads/case-ibiza-artists.jpg",
@@ -31,14 +44,35 @@ const base: CaseBase[] = [
       "/uploads/case-ibiza-portal-fleet.jpg",
     ],
   },
-  { id: "equivest", name: "Equivest", image: "/uploads/case-equivest-site.jpg" },
-  { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },
-  { id: "nunhems", name: "Nunhems", image: "/uploads/case-nunhems.jpg" },
-  { id: "schippers", name: "MS Schippers", image: "/uploads/card-schippers.jpg" },
+  {
+    id: "equivest",
+    name: "Equivest",
+    image: "/uploads/case-equivest-site.jpg",
+    url: "https://www.equivestworldwide.com",
+  },
+  {
+    id: "robeco",
+    name: "Robeco",
+    image: "/uploads/case-robeco.avif",
+    url: "https://www.robeco.nl",
+  },
+  {
+    id: "nunhems",
+    name: "Nunhems",
+    image: "/uploads/case-nunhems.jpg",
+    url: "https://www.nunhems.com",
+  },
+  {
+    id: "schippers",
+    name: "MS Schippers",
+    image: "/uploads/card-schippers.jpg",
+    url: "https://www.msschippers.nl",
+  },
   {
     id: "vamipro",
     name: "VaMiPro",
     image: "/uploads/case-vamipro-site.jpg",
+    url: "https://www.vamipro.nl",
     gallery: ["/uploads/case-vamipro-categories.jpg"],
   },
   {

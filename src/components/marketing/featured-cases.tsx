@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/marketing/section-heading";
 import { Carousel } from "@/components/ui/carousel";
 import { CaseCard } from "@/components/marketing/case-card";
+import { deviceCycle } from "@/components/marketing/device-frame";
 import { Reveal } from "@/components/motion/reveal";
 import { getCases } from "@/content/cases";
 import type { Locale } from "@/lib/i18n";
@@ -30,8 +31,13 @@ export function FeaturedCases({ locale }: { locale: Locale }) {
           slideClassName="basis-1/2 sm:basis-1/4"
           options={{ align: "start" }}
         >
-          {cases.map((study) => (
-            <CaseCard key={study.slug} study={study} locale={locale} imageFit="contain" />
+          {cases.map((study, i) => (
+            <CaseCard
+              key={study.slug}
+              study={study}
+              locale={locale}
+              device={deviceCycle[i % deviceCycle.length]}
+            />
           ))}
         </Carousel>
       </Reveal>

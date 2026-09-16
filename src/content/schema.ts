@@ -34,6 +34,8 @@ export const caseSchema = z.object({
   image: z.string().nullable(),
   /** Extra screenshots shown on the detail page, after the hero image. */
   gallery: z.array(z.string()).default([]),
+  /** Live site, when it is public. Null for internal work with nothing to link to. */
+  url: z.string().url().nullable().default(null),
 });
 
 export const reviewSchema = z.object({

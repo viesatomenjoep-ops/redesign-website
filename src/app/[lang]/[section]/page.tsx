@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { ButtonLink } from "@/components/ui/button";
 import { CaseCard } from "@/components/marketing/case-card";
+import { deviceCycle } from "@/components/marketing/device-frame";
 import { Reveal } from "@/components/motion/reveal";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { LegalPage } from "@/components/legal/legal-page";
@@ -182,7 +183,11 @@ function CasesIndex({
           <div className="grid gap-6 nav:grid-cols-3">
             {getCases(locale).map((study, i) => (
               <Reveal key={study.id} delay={i * 40}>
-                <CaseCard study={study} locale={locale} imageFit="contain" />
+                <CaseCard
+                  study={study}
+                  locale={locale}
+                  device={deviceCycle[i % deviceCycle.length]}
+                />
               </Reveal>
             ))}
           </div>

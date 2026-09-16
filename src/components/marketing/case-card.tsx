@@ -1,19 +1,20 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { CaseStudy } from "@/content/schema";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n";
 import { detailPath } from "@/lib/route-slugs";
+import { DeviceFrame, type DeviceVariant } from "@/components/marketing/device-frame";
 
 type CaseCardProps = {
   study: CaseStudy;
   locale: Locale;
   className?: string;
-  imageFit?: "cover" | "contain";
+  /** Which Apple device to mount the screenshot in. */
+  device?: DeviceVariant;
 };
 
-export function CaseCard({ study, locale, className, imageFit = "cover" }: CaseCardProps) {
+export function CaseCard({ study, locale, className, device = "macbook-air" }: CaseCardProps) {
   return (
     <Link
       href={detailPath("cases", locale, study.slug)}
@@ -22,19 +23,18 @@ export function CaseCard({ study, locale, className, imageFit = "cover" }: CaseC
         className,
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#EFECE4]">
+      <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-[#EFECE4] px-5">
         {study.image ? (
-          <Image
+          <DeviceFrame
             src={study.image}
             alt={study.name}
-            fill
+            variant={device}
             sizes="(max-width: 900px) 50vw, 300px"
-            className={cn(imageFit === "cover" ? "object-cover object-top" : "object-contain")}
           />
         ) : (
-          <div className="flex h-full items-center justify-center font-mono text-[10px] uppercase tracking-widest text-muted-ink/60">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-ink/60">
             {study.name}
-          </div>
+          </span>
         )}
       </div>
       <div className="flex flex-col items-start gap-2.5 border-t border-[#EEEBE2] px-5 py-4">

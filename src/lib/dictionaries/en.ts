@@ -158,6 +158,7 @@ export const en: Dictionary = {
   },
   detail: {
     backToPortfolio: "Back to portfolio",
+    visitSite: "Visit the live website",
     aboutProject: "About this project",
     moreProjects: "More projects",
     backToServices: "Back to services",

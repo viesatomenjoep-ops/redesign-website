@@ -170,6 +170,7 @@ export const nl = {
   },
   detail: {
     backToPortfolio: "Terug naar portfolio",
+    visitSite: "Bekijk de live website",
     aboutProject: "Over dit project",
     moreProjects: "Meer projecten",
     backToServices: "Terug naar diensten",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
@@ -9,7 +9,7 @@ import { LucideIcon } from "@/components/ui/lucide-icon";
 import { ContactButton } from "@/components/contact/contact-button";
 import { CaseCard } from "@/components/marketing/case-card";
 import { ServiceCardVisual } from "@/components/marketing/service-card-visual";
-import { DeviceFrame } from "@/components/marketing/device-frame";
+import { DeviceFrame, deviceCycle } from "@/components/marketing/device-frame";
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { getCases, findCase, getOtherCases, caseAlternateSlugs } from "@/content/cases";
@@ -145,6 +145,21 @@ function CaseDetail({
           {study.name}
         </h1>
         <p className="mt-5 max-w-[600px] text-[17px] leading-relaxed text-muted">{study.summary}</p>
+
+        {study.url ? (
+          <a
+            href={study.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2 rounded-pill border border-paper/25 px-5 py-2.5 text-sm font-semibold text-paper transition hover:border-coral hover:text-coral"
+          >
+            {t.detail.visitSite}
+            <span className="font-mono text-[12px] text-muted-2">
+              {study.url.replace(/^https?:\/\//, "")}
+            </span>
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        ) : null}
       </Container>
 
       <Container width="content" className="pb-20">
@@ -191,8 +206,13 @@ function CaseDetail({
             {t.detail.moreProjects}
           </h2>
           <div className="grid gap-4 nav:grid-cols-3">
-            {more.map((other) => (
-              <CaseCard key={other.id} study={other} locale={locale} />
+            {more.map((other, i) => (
+              <CaseCard
+                key={other.id}
+                study={other}
+                locale={locale}
+                device={deviceCycle[i % deviceCycle.length]}
+              />
             ))}
           </div>
         </Container>

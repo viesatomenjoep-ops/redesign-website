@@ -1,10 +1,15 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
+export type DeviceVariant = "macbook-pro" | "macbook-air" | "imac";
+
+/** Cycled by index so a grid of cards never shows the same device twice in a row. */
+export const deviceCycle: DeviceVariant[] = ["macbook-pro", "imac", "macbook-air"];
+
 type DeviceFrameProps = {
   src: string;
   alt: string;
-  variant: "macbook-pro" | "macbook-air" | "imac";
+  variant: DeviceVariant;
   priority?: boolean;
   sizes?: string;
   className?: string;
