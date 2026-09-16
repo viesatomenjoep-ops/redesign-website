@@ -31,7 +31,6 @@ const base: CaseBase[] = [
       "/uploads/case-ibiza-portal-fleet.jpg",
     ],
   },
-  { id: "rooster", name: "Rooster", image: "/uploads/case-rooster.jpeg" },
   { id: "equivest", name: "Equivest", image: "/uploads/case-equivest-site.jpg" },
   { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },
   { id: "nunhems", name: "Nunhems", image: "/uploads/case-nunhems.jpg" },
@@ -69,13 +68,6 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
         "Compleet boekingsplatform voor tickets, privéboten en activiteiten op Ibiza — binnen twee weken 150 tickets verkocht.",
       description:
         "Voor onze Franse partner bouwden we het volledige Ibiza Mi Vida-platform: een meertalige boekingssite voor events, clubtickets, privéboten en activiteiten, met custom CMS en directe partnerships met bedrijven op het eiland. Dankzij een slimme SEO-strategie werden binnen twee weken na livegang al 150 tickets verkocht.",
-    },
-    rooster: {
-      slug: "rooster",
-      category: "PLANNINGSSOFTWARE",
-      summary: "Planningsoplossing die roosterbeheer eenvoudiger en overzichtelijker maakt.",
-      description:
-        "Een planningsoplossing die roosterbeheer overzichtelijker maakt, met een interface die is afgestemd op de dagelijkse werkwijze van de organisatie.",
     },
     equivest: {
       slug: "equivest",
@@ -139,13 +131,6 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
       description:
         "For our French partner we built the entire Ibiza Mi Vida platform: a multilingual booking site for events, club tickets, private boats and activities, with a custom CMS and direct partnerships with businesses on the island. Thanks to a smart SEO strategy, 150 tickets were sold within two weeks of launch.",
     },
-    rooster: {
-      slug: "rooster",
-      category: "SCHEDULING SOFTWARE",
-      summary: "Scheduling solution that makes roster management simpler and clearer.",
-      description:
-        "A scheduling solution that makes roster management clearer, with an interface tailored to the organisation's day-to-day way of working.",
-    },
     equivest: {
       slug: "equivest",
       category: "PLATFORM & CMS",
@@ -208,13 +193,6 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
         "Plataforma completa de reservas de entradas, barcos privados y actividades en Ibiza: 150 entradas vendidas en dos semanas.",
       description:
         "Para nuestro socio francés desarrollamos la plataforma completa de Ibiza Mi Vida: una web de reservas multilingüe para eventos, entradas de clubs, barcos privados y actividades, con un CMS a medida y colaboraciones directas con empresas de la isla. Gracias a una estrategia SEO inteligente, se vendieron 150 entradas en las dos primeras semanas tras el lanzamiento.",
-    },
-    rooster: {
-      slug: "rooster",
-      category: "SOFTWARE DE PLANIFICACIÓN",
-      summary: "Solución de planificación que simplifica y clarifica la gestión de turnos.",
-      description:
-        "Una solución de planificación que aporta más claridad a la gestión de turnos, con una interfaz adaptada a la forma de trabajar diaria de la organización.",
     },
     equivest: {
       slug: "equivest",
