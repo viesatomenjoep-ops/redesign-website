@@ -9,7 +9,7 @@ import { defaultLocale, locales, type Locale } from "@/lib/i18n";
  *  `slug` is what appears in the URL and differs per locale. Company names and
  *  imagery are locale-independent and live in `base`. */
 
-type CaseBase = { id: string; name: string; image: string | null };
+type CaseBase = { id: string; name: string; image: string | null; gallery?: string[] };
 
 type CaseCopy = {
   slug: string;
@@ -20,7 +20,13 @@ type CaseCopy = {
 
 const base: CaseBase[] = [
   { id: "wehkamp", name: "Wehkamp", image: "/uploads/card-wehkamp.jpg" },
-  { id: "ibiza", name: "Ibiza Mi Vida", image: "/uploads/case-ibiza-site.jpg" },
+  {
+    id: "ibiza",
+    name: "Ibiza Mi Vida",
+    image: "/uploads/case-ibiza-site.jpg",
+    /* Volgorde: clubs, artiesten; portal-screenshots volgen zodra aangeleverd. */
+    gallery: ["/uploads/case-ibiza-clubs.jpg", "/uploads/case-ibiza-artists.jpg"],
+  },
   { id: "rooster", name: "Rooster", image: "/uploads/case-rooster.jpeg" },
   { id: "equivest", name: "Equivest", image: "/uploads/case-equivest-site.jpg" },
   { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },

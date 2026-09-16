@@ -160,6 +160,25 @@ function CaseDetail({
             />
           ) : null}
         </div>
+
+        {study.gallery.length > 0 ? (
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {study.gallery.map((src, i) => (
+              <div
+                key={src}
+                className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-navy-700"
+              >
+                <Image
+                  src={src}
+                  alt={`${study.name} — ${i + 2}`}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 570px"
+                  className="object-cover object-top"
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
       </Container>
 
       <section className="bg-paper text-ink">

@@ -32,6 +32,8 @@ export const caseSchema = z.object({
   summary: z.string(),
   description: z.string(),
   image: z.string().nullable(),
+  /** Extra screenshots shown on the detail page, after the hero image. */
+  gallery: z.array(z.string()).default([]),
 });
 
 export const reviewSchema = z.object({
