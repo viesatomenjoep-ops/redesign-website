@@ -27,11 +27,11 @@ export function FeaturedCases({ locale }: { locale: Locale }) {
       <Reveal className="mx-auto max-w-[900px] px-5">
         <Carousel
           ariaLabel={t.featuredCases.carouselLabel}
-          slideClassName="basis-full sm:basis-1/2"
+          slideClassName="basis-1/2 sm:basis-1/4"
           options={{ align: "start" }}
         >
           {cases.map((study) => (
-            <CaseCard key={study.slug} study={study} locale={locale} />
+            <CaseCard key={study.slug} study={study} locale={locale} imageFit="contain" />
           ))}
         </Carousel>
       </Reveal>

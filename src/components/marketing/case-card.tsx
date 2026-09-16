@@ -28,7 +28,7 @@ export function CaseCard({ study, locale, className, imageFit = "cover" }: CaseC
             src={study.image}
             alt={study.name}
             fill
-            sizes="(max-width: 900px) 100vw, 380px"
+            sizes="(max-width: 900px) 50vw, 300px"
             className={cn(imageFit === "cover" ? "object-cover object-top" : "object-contain")}
           />
         ) : (
