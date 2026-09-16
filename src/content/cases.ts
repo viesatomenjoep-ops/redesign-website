@@ -24,19 +24,32 @@ const base: CaseBase[] = [
     id: "ibiza",
     name: "Ibiza Mi Vida",
     image: "/uploads/case-ibiza-site.jpg",
-    /* Volgorde: clubs, artiesten; portal-screenshots volgen zodra aangeleverd. */
-    gallery: ["/uploads/case-ibiza-clubs.jpg", "/uploads/case-ibiza-artists.jpg"],
+    gallery: [
+      "/uploads/case-ibiza-clubs.jpg",
+      "/uploads/case-ibiza-artists.jpg",
+      "/uploads/case-ibiza-portal-login.jpg",
+      "/uploads/case-ibiza-portal-fleet.jpg",
+    ],
   },
   { id: "rooster", name: "Rooster", image: "/uploads/case-rooster.jpeg" },
   { id: "equivest", name: "Equivest", image: "/uploads/case-equivest-site.jpg" },
   { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },
   { id: "nunhems", name: "Nunhems", image: "/uploads/case-nunhems.jpg" },
   { id: "schippers", name: "MS Schippers", image: "/uploads/card-schippers.jpg" },
-  { id: "vamipro", name: "VaMiPro", image: "/uploads/case-vamipro-site.jpg" },
+  {
+    id: "vamipro",
+    name: "VaMiPro",
+    image: "/uploads/case-vamipro-site.jpg",
+    gallery: ["/uploads/case-vamipro-categories.jpg"],
+  },
   {
     id: "viesa-dashboard",
     name: "Viesa Dashboard",
     image: "/uploads/case-viesa-dashboard.jpg",
+    gallery: [
+      "/uploads/case-viesa-dashboard-audit.jpg",
+      "/uploads/case-viesa-dashboard-promomail.jpg",
+    ],
   },
 ];
 
