@@ -26,6 +26,7 @@ const base: CaseBase[] = [
   { id: "robeco", name: "Robeco", image: "/uploads/case-robeco.avif" },
   { id: "nunhems", name: "Nunhems", image: "/uploads/case-nunhems.jpg" },
   { id: "schippers", name: "MS Schippers", image: "/uploads/card-schippers.jpg" },
+  { id: "vamipro", name: "VaMiPro", image: "/uploads/case-vamipro-site.jpg" },
 ];
 
 const copy: Record<Locale, Record<string, CaseCopy>> = {
@@ -81,6 +82,14 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
       description:
         "Maatwerk software voor processen binnen de veehouderijsector, gebouwd rondom de specifieke werkwijze van de organisatie.",
     },
+    vamipro: {
+      slug: "vamipro",
+      category: "E-COMMERCE & CMS",
+      summary:
+        "Complete maatwerk webshop met eigen CMS — van A tot Z aanpasbaar, zonder maandelijkse Shopify-kosten.",
+      description:
+        "Voor VaMiPro bouwden we een complete webshop volledig op maat: productcatalogus, winkelwagen, kortingscodes en combinatiedeals, met een eigen CMS waarin de klant alles van A tot Z zelf aanpast — teksten, producten, acties en campagnes. Custom gebouwd, dus zonder de maandelijkse kosten van een Shopify-abonnement.",
+    },
   },
   en: {
     wehkamp: {
@@ -133,6 +142,14 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
       summary: "Custom software for processes within the livestock farming sector.",
       description:
         "Custom software for processes within the livestock farming sector, built around the organisation's specific way of working.",
+    },
+    vamipro: {
+      slug: "vamipro",
+      category: "E-COMMERCE & CMS",
+      summary:
+        "Complete custom-built webshop with its own CMS — customisable from A to Z, without monthly Shopify fees.",
+      description:
+        "For VaMiPro we built a complete webshop fully from scratch: product catalogue, cart, discount codes and bundle deals, with its own CMS in which the client adjusts everything from A to Z — copy, products, promotions and campaigns. Custom built, so without the monthly cost of a Shopify subscription.",
     },
   },
   es: {
@@ -187,6 +204,14 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
       summary: "Software a medida para los procesos del sector ganadero.",
       description:
         "Software a medida para los procesos del sector ganadero, desarrollado en torno a la forma de trabajar específica de la organización.",
+    },
+    vamipro: {
+      slug: "vamipro",
+      category: "E-COMMERCE Y CMS",
+      summary:
+        "Tienda online completa a medida con CMS propio: personalizable de la A a la Z, sin cuotas mensuales de Shopify.",
+      description:
+        "Para VaMiPro desarrollamos una tienda online completa totalmente a medida: catálogo de productos, carrito, códigos de descuento y packs combinados, con un CMS propio en el que el cliente ajusta todo de la A a la Z — textos, productos, promociones y campañas. Desarrollo a medida, sin el coste mensual de una suscripción a Shopify.",
     },
   },
 };
