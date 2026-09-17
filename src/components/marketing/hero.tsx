@@ -4,17 +4,13 @@ import { Container } from "@/components/ui/container";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Typewriter } from "@/components/motion/typewriter";
 import { useContactDialog } from "@/components/contact/contact-dialog";
+import { useI18n } from "@/components/i18n/locale-provider";
 import { site } from "@/lib/site";
-
-const pillars = [
-  { n: "01", title: "AI-Calling agents", tag: "Telefonie" },
-  { n: "02", title: "AI-Chatbots", tag: "Klantenservice" },
-  { n: "03", title: "Workflow-automatisering", tag: "Integraties" },
-  { n: "04", title: "Software & dashboards", tag: "Maatwerk" },
-];
 
 export function Hero() {
   const { open } = useContactDialog();
+  const { t } = useI18n();
+  const pillars = t.hero.pillars.map((p, i) => ({ ...p, n: String(i + 1).padStart(2, "0") }));
 
   return (
     <section
@@ -34,21 +30,17 @@ export function Hero() {
         <div className="grid items-center gap-12 nav:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
           <div>
             <h1 className="m-0 max-w-[12ch] text-[clamp(2.875rem,7vw,6rem)] font-extrabold leading-[0.99] tracking-[-0.035em] text-paper">
-              <Typewriter text="Wij maken werkprocessen slimmer en mobieler." speed={62} />
+              <Typewriter text={t.hero.title} speed={62} />
             </h1>
             <p className="mb-11 mt-8 max-w-[560px] text-lg leading-relaxed text-muted">
-              <Typewriter
-                text="Met combinatie van 10+ jaar softwarekennis met de kracht van AI om bedrijven slimmer, sneller en efficiënter te laten werken."
-                speed={16}
-                startDelay={900}
-              />
+              <Typewriter text={t.hero.lede} speed={16} startDelay={900} />
             </p>
             <div className="flex flex-wrap items-center gap-3.5">
               <Button type="button" variant="coral" size="lg" onClick={open}>
-                Plan een strategiegesprek
+                {t.common.planCall}
               </Button>
               <ButtonLink href="#werk" variant="outline" size="lg">
-                Bekijk ons werk
+                {t.common.viewWork}
               </ButtonLink>
             </div>
           </div>
@@ -72,7 +64,7 @@ export function Hero() {
 
       <Container width="wide" className="relative pb-10">
         <div className="flex flex-wrap items-center justify-center gap-3.5 border-t border-paper/10 pt-6 text-center font-mono text-[13.5px] tracking-[0.18em] text-[#8899B0]">
-          <span>AI-AGENTS · AUTOMATISERING · SAAS en APPS · E-COMMERCE · STRATEGIE</span>
+          <span>{t.hero.strip}</span>
           <span className="text-[#5C6C84]">· EST. {site.founded}</span>
         </div>
       </Container>

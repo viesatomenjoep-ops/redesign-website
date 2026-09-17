@@ -90,10 +90,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
   nl: {
     wehkamp: {
       slug: "wehkamp",
-      category: "E-COMMERCE",
-      summary: "Automatisering en integraties voor een grootschalig e-commerceplatform.",
+      category: "MOBIELE APP",
+      summary:
+        "Bijgedragen aan de native Wehkamp- en Kleertjes-app — een support-chatbot, nieuwe zoekfunctie en de overstap van XML naar Jetpack Compose.",
       description:
-        "Voor Wehkamp bouwden we automatiseringen en integraties die processen rond het e-commerceplatform stroomlijnen, zodat data foutloos tussen systemen doorstroomt en handmatig werk afneemt.",
+        "We droegen bij aan de ontwikkeling van de native Wehkamp-app en de Kleertjes-app. We bouwden en integreerden een klantenservice-chatbot waarmee gebruikers direct antwoord krijgen op veelgestelde vragen binnen de app, implementeerden nieuwe zoekfunctionaliteit met Jetpack Compose en Jetpack Navigation, en leidden de migratie van legacy XML-gebaseerde UI-componenten naar Jetpack Compose — wat de onderhoudbaarheid verbeterde en de codebase in lijn bracht met moderne Android-ontwikkelpraktijken.",
     },
     ibiza: {
       slug: "ibiza",
@@ -120,17 +121,18 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     nunhems: {
       slug: "nunhems",
-      category: "AGRI",
-      summary: "Software ter ondersteuning van processen binnen de agrarische sector.",
+      category: "AGRI & KOTLIN MULTIPLATFORM",
+      summary:
+        "Kotlin Multiplatform tablet-app waarmee telers hun gewassen in kassen bijhouden, ook met weinig tot geen internetverbinding.",
       description:
-        "Software ter ondersteuning van processen binnen de agrarische sector, afgestemd op de specifieke behoeften van de organisatie.",
+        "We bouwden een Kotlin Multiplatform-applicatie voor tablets waarmee telers hun gewassen in kassen kunnen bijhouden, ook op plekken met weinig tot geen internetverbinding. De app is offline-first ontworpen en synchroniseert data automatisch zodra er weer verbinding is, zodat het werk op de kas nooit hoeft te wachten op een signaal.",
     },
     schippers: {
       slug: "schippers",
-      category: "AGRI & VEEHOUDERIJ",
-      summary: "Maatwerk software voor processen binnen de veehouderijsector.",
+      category: "AGRI & ANDROID APP",
+      summary: "Android-app voor een e-commerceplatform waarmee boeren snel producten bestellen — volledig functioneel offline.",
       description:
-        "Maatwerk software voor processen binnen de veehouderijsector, gebouwd rondom de specifieke werkwijze van de organisatie.",
+        "We ontwikkelden een Android-applicatie voor een e-commerceplatform gericht op boeren, waarmee zij snel en eenvoudig producten kunnen bestellen vanaf het land. De app is volledig offline te gebruiken, zodat gebruikers op plekken met weinig tot geen internetverbinding gewoon door kunnen werken.",
     },
     vamipro: {
       slug: "vamipro",
@@ -152,10 +154,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
   en: {
     wehkamp: {
       slug: "wehkamp",
-      category: "E-COMMERCE",
-      summary: "Automation and integrations for a large-scale e-commerce platform.",
+      category: "MOBILE APP",
+      summary:
+        "Contributed to the native Wehkamp and Kleertjes apps — a support chatbot, new search, and a move from XML views to Jetpack Compose.",
       description:
-        "For Wehkamp we built automations and integrations that streamline the processes around the e-commerce platform, so data flows between systems without errors and manual work decreases.",
+        "We contributed to the development of the native Wehkamp app and the Kleertjes app. We built and integrated a customer support chatbot that gives users instant answers to frequently asked questions inside the app, implemented new search functionality using Jetpack Compose and Jetpack Navigation, and led the migration of legacy XML-based UI components to Jetpack Compose — improving code maintainability and bringing the codebase in line with modern Android development practices.",
     },
     ibiza: {
       slug: "ibiza",
@@ -182,17 +185,19 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     nunhems: {
       slug: "nunhems",
-      category: "AGRI",
-      summary: "Software supporting processes within the agricultural sector.",
+      category: "AGRI & KOTLIN MULTIPLATFORM",
+      summary:
+        "Kotlin Multiplatform tablet app that lets farmers track greenhouse crops with little to no internet connectivity.",
       description:
-        "Software supporting processes within the agricultural sector, tailored to the specific needs of the organisation.",
+        "We built a Kotlin Multiplatform application for tablets, giving farmers a way to track their crops in greenhouses even where internet connectivity is poor or absent. The app was designed offline-first, syncing data automatically once a connection becomes available, so fieldwork never has to wait on a signal.",
     },
     schippers: {
       slug: "schippers",
-      category: "AGRI & LIVESTOCK",
-      summary: "Custom software for processes within the livestock farming sector.",
+      category: "AGRI & ANDROID APP",
+      summary:
+        "Android app for an e-commerce platform that lets farmers order products quickly — fully functional offline.",
       description:
-        "Custom software for processes within the livestock farming sector, built around the organisation's specific way of working.",
+        "We developed an Android application for an e-commerce platform aimed at farmers, letting them order products quickly and easily from the field. The app was built to be fully functional offline, so users in locations with little to no internet connectivity can keep working without interruption.",
     },
     vamipro: {
       slug: "vamipro",
@@ -214,11 +219,11 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
   es: {
     wehkamp: {
       slug: "wehkamp",
-      category: "COMERCIO ELECTRÓNICO",
+      category: "APLICACIÓN MÓVIL",
       summary:
-        "Automatización e integraciones para una plataforma de comercio electrónico a gran escala.",
+        "Colaboración en las apps nativas de Wehkamp y Kleertjes: chatbot de soporte, nueva búsqueda y migración de XML a Jetpack Compose.",
       description:
-        "Para Wehkamp desarrollamos automatizaciones e integraciones que agilizan los procesos en torno a la plataforma de comercio electrónico, de modo que los datos fluyen sin errores entre sistemas y disminuye el trabajo manual.",
+        "Colaboramos en el desarrollo de la app nativa de Wehkamp y de la app Kleertjes. Desarrollamos e integramos un chatbot de atención al cliente que da respuestas instantáneas a las preguntas frecuentes dentro de la app, implementamos una nueva funcionalidad de búsqueda con Jetpack Compose y Jetpack Navigation, y lideramos la migración de los componentes de UI basados en XML heredado a Jetpack Compose, mejorando la mantenibilidad del código y alineando la base de código con las prácticas modernas de desarrollo Android.",
     },
     ibiza: {
       slug: "ibiza",
@@ -245,17 +250,19 @@ const copy: Record<Locale, Record<string, CaseCopy>> = {
     },
     nunhems: {
       slug: "nunhems",
-      category: "AGRO",
-      summary: "Software de apoyo a los procesos del sector agrario.",
+      category: "AGRO Y KOTLIN MULTIPLATFORM",
+      summary:
+        "App Kotlin Multiplatform para tablets con la que los agricultores registran sus cultivos en invernaderos, con poca o ninguna conexión a internet.",
       description:
-        "Software de apoyo a los procesos del sector agrario, adaptado a las necesidades específicas de la organización.",
+        "Desarrollamos una aplicación Kotlin Multiplatform para tablets que permite a los agricultores hacer seguimiento de sus cultivos en invernaderos, incluso en lugares con poca o ninguna conectividad a internet. La app se diseñó offline-first y sincroniza los datos automáticamente en cuanto hay conexión, para que el trabajo en el invernadero nunca tenga que esperar a una señal.",
     },
     schippers: {
       slug: "schippers",
-      category: "AGRO Y GANADERÍA",
-      summary: "Software a medida para los procesos del sector ganadero.",
+      category: "AGRO Y APP ANDROID",
+      summary:
+        "App Android para una plataforma de e-commerce con la que los agricultores piden productos rápidamente, totalmente funcional sin conexión.",
       description:
-        "Software a medida para los procesos del sector ganadero, desarrollado en torno a la forma de trabajar específica de la organización.",
+        "Desarrollamos una aplicación Android para una plataforma de comercio electrónico dirigida a agricultores, con la que pueden pedir productos de forma rápida y sencilla desde el campo. La app se diseñó para funcionar completamente sin conexión, de modo que los usuarios en zonas con poca o ninguna conectividad puedan seguir trabajando sin interrupciones.",
     },
     vamipro: {
       slug: "vamipro",
