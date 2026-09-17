@@ -100,8 +100,7 @@ export const en: Dictionary = {
       "From custom software and mobile applications to AI agents, workflow automation and complete digital platforms — we build end-to-end solutions that fit the way your business works.",
     body2:
       "With 10+ years of software expertise we combine proven technology with the power of AI. We keep the lines short, work in phases and stay involved after launch. One partner for software, automation and AI — from idea to working solution.",
-    roleCofounder: "CO-FOUNDER",
-    photoAlt: "{name}, co-founder of Viesa Automations",
+    foundersRole: "CO-FOUNDERS",
   },
   faq: {
     eyebrow: "Frequently asked questions",

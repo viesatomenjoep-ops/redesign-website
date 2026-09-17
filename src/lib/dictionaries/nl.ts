@@ -110,9 +110,7 @@ export const nl = {
       "Van maatwerksoftware en mobiele applicaties tot AI-agents, workflowautomatisering en complete digitale platformen — wij bouwen end-to-end oplossingen die aansluiten op de manier waarop jouw bedrijf werkt.",
     body2:
       "Met 10+ jaar softwarekennis combineren we bewezen technologie met de kracht van AI. We houden de lijnen kort, werken in fases en blijven ook na de livegang betrokken. Eén partij voor software, automatisering en AI — van idee tot werkende oplossing.",
-    roleCofounder: "MEDE-OPRICHTER",
-    /** {name} = founder's first name. */
-    photoAlt: "{name}, medeoprichter van Viesa Automations",
+    foundersRole: "MEDE-OPRICHTERS",
   },
   faq: {
     eyebrow: "Veelgestelde vragen",

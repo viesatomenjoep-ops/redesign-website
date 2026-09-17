@@ -102,8 +102,7 @@ export const es: Dictionary = {
       "Desde software a medida y aplicaciones móviles hasta agentes de IA, automatización de flujos de trabajo y plataformas digitales completas: construimos soluciones de principio a fin que encajan con la forma en que trabaja su empresa.",
     body2:
       "Con más de 10 años de experiencia en software, combinamos tecnología probada con la fuerza de la IA. Mantenemos el contacto directo, trabajamos por fases y seguimos implicados también después de la puesta en marcha. Un único socio para software, automatización e IA: de la idea a la solución en funcionamiento.",
-    roleCofounder: "COFUNDADOR",
-    photoAlt: "{name}, cofundador de Viesa Automations",
+    foundersRole: "COFUNDADORES",
   },
   faq: {
     eyebrow: "Preguntas frecuentes",
