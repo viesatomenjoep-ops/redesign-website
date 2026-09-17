@@ -1,31 +1,26 @@
 # Viesa Automations — website
 
-Next.js 15 (App Router) rebuild of the Claude Design prototype. Dutch-language
-marketing site: landing page, 6 service detail pages, cases index + 7 case
-detail pages.
-
-See [`IMPLEMENTATION_PLAN.md`](./IMPLEMENTATION_PLAN.md) for the full plan,
-design tokens, and open questions.
+Next.js 15 (App Router) marketing site. **Drietalig**: Nederlands op de root,
+Engels onder `/en`, Spaans onder `/es`. Landingspagina, 6 dienstpagina's,
+cases-overzicht + 8 case-detailpagina's, en juridische pagina's.
 
 ## Stack
 
-- Next.js 15 · React 19 · TypeScript (strict)
+- Next.js 15 · React 19 · TypeScript (strict, incl. `noUncheckedIndexedAccess`)
 - Tailwind CSS v4 (tokens in `src/app/globals.css` `@theme`)
 - Radix UI (contact dialog, FAQ accordion) · Embla (carousels) · lucide-react
-- Custom lightweight motion primitives (`src/components/motion/*`), all
+- Eigen lichtgewicht motion-primitives (`src/components/motion/*`), allemaal
   reduced-motion aware
-- Hardcoded typed content in `src/content/*` (Zod-validated)
-- Contact form → `/api/contact` route handler → Resend (env-guarded) + optional
-  n8n webhook
-- Reviews section pulls live Google reviews via the Places API (New), server-side
-  and cached 24h, with `src/content/reviews.ts` as the fallback. See
-  [`GOOGLE_REVIEWS_PLAN.md`](./GOOGLE_REVIEWS_PLAN.md).
-- **"Vraag gratis audit aan"** → Cal.com embed (`@calcom/embed-react`), loaded on
-  click; optional booking webhook at `/api/cal/webhook`. See
+- Getypeerde content in `src/content/*` (Zod-gevalideerd), per taal
+- Contactformulier → `/api/contact` → Resend (env-guarded) + optionele n8n-webhook
+- Reviews via de Google Places API (New), server-side, 24 uur gecached, met
+  `src/content/reviews.ts` als fallback. Zie [`GOOGLE_REVIEWS_PLAN.md`](./GOOGLE_REVIEWS_PLAN.md).
+- **"Vraag gratis audit aan"** → Cal.com embed (`@calcom/embed-react`), geladen
+  bij klik; optionele booking-webhook op `/api/cal/webhook`. Zie
   [`CALCOM_INTEGRATION_PLAN.md`](./CALCOM_INTEGRATION_PLAN.md).
 - Vercel Analytics + Speed Insights
 
-## Getting started
+## Aan de slag
 
 ```bash
 pnpm install
@@ -33,92 +28,120 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-Then open http://localhost:3000.
+Open daarna http://localhost:3000.
 
-Other scripts: `pnpm build`, `pnpm start`, `pnpm lint`, `pnpm typecheck`,
+Andere scripts: `pnpm build`, `pnpm start`, `pnpm lint`, `pnpm typecheck`,
 `pnpm format`.
 
-## Required: copy prototype assets
+> **Let op bij typechecken:** de repo heeft `noUncheckedIndexedAccess` aan.
+> Een losse `tsc`-run zonder de repo-`tsconfig.json` mist die fouten — draai
+> altijd `pnpm build` voordat je pusht.
 
-The components reference images at `/uploads/...`. Copy the prototype's asset
-folder into `public/`:
+## Meertaligheid
 
-```bash
-cp -R "~/Downloads/Landing page setup progress (2)/uploads" public/uploads
-```
+Nederlands staat op de root; `en` en `es` zijn geprefixt. Alle routes leven
+onder `src/app/[lang]/`, en `src/middleware.ts` herschrijft onvoorvoegde
+verzoeken naar `/nl/...` (de bezoeker houdt de schone URL). `/nl/...` direct
+opvragen redirect permanent weg, zodat elke pagina één indexeerbare URL heeft.
 
-### Assets still missing (add before launch)
+URL-segmenten en slugs zijn per taal vertaald via `src/lib/route-slugs.ts`:
 
-These are referenced by the code but are **not** in the prototype export:
+| | Nederlands | Engels | Spaans |
+|---|---|---|---|
+| Cases | `/cases` | `/en/cases` | `/es/casos` |
+| Diensten | `/diensten/workflow-automatisering` | `/en/services/workflow-automation` | `/es/servicios/automatizacion-de-flujos` |
 
-| Path | What |
-|---|---|
-| `public/uploads/tech-react.svg` | React logo (was `cdn.simpleicons.org`) |
-| `public/uploads/tech-postgresql.svg` | PostgreSQL logo (was `cdn.simpleicons.org`) |
-| `public/uploads/tech-claude.svg` | Claude logo (was `cdn.simpleicons.org`) |
-| `public/uploads/portret-tom.jpg` | Founder portrait (Tom) — was a fillable slot |
-| `public/uploads/portret-joep.jpg` | Founder portrait (Joep) — was a fillable slot |
+Alle UI-teksten staan in `src/lib/dictionaries/{nl,en,es}.ts`. De Nederlandse
+dictionary bepaalt het `Dictionary`-type, dus een vergeten sleutel in `en` of
+`es` is een compile-fout. Placeholders (`{count}`) vul je met `interpolate()`.
 
-Grab the three logos from the [`simple-icons`](https://simpleicons.org) package
-or download the SVGs. Portraits need to come from the client.
+De juridische pagina's (`/privacy`, `/cookies`) zijn **alleen in het
+Nederlands**; bezoekers in `en`/`es` krijgen een melding dat de Nederlandse
+versie leidend is.
 
-## Project layout
+## Projectstructuur
 
 ```
 src/
   app/
-    layout.tsx                    root shell, fonts, analytics, contact provider
-    page.tsx                      landing page
-    diensten/[slug]/page.tsx      service detail (static params)
-    cases/page.tsx                portfolio grid
-    cases/[slug]/page.tsx         case detail (static params)
-    api/contact/route.ts          form handler (Resend + optional webhook)
-    sitemap.ts robots.ts manifest.ts not-found.tsx error.tsx
+    [lang]/
+      layout.tsx                  root shell (html lang), fonts, analytics, providers
+      page.tsx                    landingspagina
+      [section]/page.tsx          cases-index, privacy, cookies, bedankt
+      [section]/[slug]/page.tsx   case- én dienstdetail (sectie bepaalt welke)
+      opengraph-image.tsx         OG-beelden per taal
+    api/contact/route.ts          formulier (Resend + optionele webhook)
+    api/cal/webhook/route.ts      Cal.com-bookings
+    sitemap.ts robots.ts manifest.ts icon.tsx apple-icon.tsx
     globals.css                   Tailwind v4 + design tokens + keyframes
+  middleware.ts                   NL op de root, en/es geprefixt
   components/
-    layout/    Header, MobileMenu, Footer, SiteChrome
+    layout/    Header, MobileMenu, Footer, SiteChrome, LanguageSwitcher
+    i18n/      LocaleProvider (locale-context voor client components)
     ui/        Button, Container, Eyebrow, SectionTile, Carousel, LucideIcon
     motion/    Reveal, Typewriter, CountUp, useReducedMotion
-    contact/   ContactDialogProvider, ContactButton, ContactForm
+    contact/   ContactDialogProvider, ContactButton, ContactForm, WhatsAppButton
     marketing/ Hero, Reviews, ClientMarquee, ServicesGrid, ServiceCardVisual,
-               WhyViesa, TechStack, FeaturedCases, CaseCard, About, Faq, ContactCta
+               WhyViesa, TechStack, FeaturedCases, CaseCard, DeviceFrame,
+               About, Faq, ContactCta
+    legal/     LegalPage, PrivacyBody, CookiesBody
     seo/       json-ld helpers
-  content/     services, cases, reviews, faq, tech, clients (+ schema.ts)
-  lib/         site config, fonts, seo, utils (cn), contact-schema
+  content/     services, cases, reviews, faq, tech, clients (+ schema.ts) — per taal
+  lib/         i18n, route-slugs, dictionaries, site config, fonts, seo, utils
+public/uploads/  alle afbeeldingen (screenshots, logo's, tech-iconen)
 ```
 
-## Deviations from the prototype (intentional, v1)
+### Cases
 
-- **Hash routing + `localStorage` removed** — service/case detail pages use real
-  routes with `generateStaticParams`.
-- **`mailto:` submission replaced** — real form handler with validation, honeypot,
-  and optional Cloudflare Turnstile.
-- **Service-card animations simplified** — the 6 micro-visuals keep the concept
-  (waveform, chat, flow graph, skeleton, KPI bars, checklist) with far less code.
-  See `service-card-visual.tsx`.
-- **Deferred:** the ROI calculator (dead code in the prototype), the scroll-driven
-  "Mario" sprite, the 3D phone ring, and the two on-page photo carousels
-  ("Achter de schermen" / "Work in action") — the last pending real photos.
-- **Legal pages** (`/privacy`, `/cookies`) — not built yet; required for launch.
+`src/content/cases.ts` houdt per case een stabiele `id` (taalonafhankelijk) en
+een `slug` per taal. Verder:
+
+- `image` — hoofdscreenshot, getoond in een MacBook Pro-frame
+- `gallery` — extra screenshots, afwisselend op een iMac en een MacBook Air
+- `url` — de live site van de klant; levert een "Bekijk de live website"-knop op.
+  `null` voor intern werk zonder publieke site (het Viesa Dashboard).
+
+De apparaatframes in `components/marketing/device-frame.tsx` zijn volledig met
+CSS getekend — geen frame-afbeeldingen, dus scherp op elk formaat.
 
 ## Environment variables
 
-See `.env.example`. With `RESEND_API_KEY` unset, `/api/contact` and
-`/api/cal/webhook` validate and log the payload instead of sending — fine for
-local dev.
+Zie `.env.example`.
 
-For live Google reviews, set `GOOGLE_PLACES_API_KEY` (restricted to *Places API
-New*, server-side only) and `GOOGLE_PLACE_ID`. Without them the reviews section
-falls back to the curated snapshot in `src/content/reviews.ts`.
+**Verplicht voor productie:**
 
-For the Cal.com booking button, set `NEXT_PUBLIC_CALCOM_LINK` to your
-`<handle>/<event-slug>` and configure the event type (duration, booking
-questions, brand colour `#E2603F`) in the Cal.com dashboard. Point a Cal.com
-webhook at `/api/cal/webhook` with `CALCOM_WEBHOOK_SECRET` to mirror bookings
-into the internal inbox / n8n. Details in `CALCOM_INTEGRATION_PLAN.md`.
+```
+NEXT_PUBLIC_SITE_URL = https://<het-echte-domein>
+```
 
-## Status
+Zonder deze variabele wijzen de canonical- en hreflang-tags naar
+`http://localhost:3000`, wat de meertalige indexering onbruikbaar maakt.
 
-Hand-written scaffold — **not yet run through `pnpm install` / `next build`**.
-Expect a few small fixes on first boot (type nits, a Tailwind class here or
-there). Work through `pnpm typecheck` then `pnpm build`.
+**Optioneel:** met `RESEND_API_KEY` leeg valideren `/api/contact` en
+`/api/cal/webhook` de payload en loggen die alleen — prima voor lokaal werk.
+Voor live Google-reviews: `GOOGLE_PLACES_API_KEY` (beperkt tot *Places API New*,
+server-side) en `GOOGLE_PLACE_ID`. Voor de boekingsknop:
+`NEXT_PUBLIC_CALCOM_LINK` plus een Cal.com-webhook naar `/api/cal/webhook` met
+`CALCOM_WEBHOOK_SECRET`.
+
+## Deployen
+
+Productie hangt aan branch **`master`** — Vercel deployt die automatisch.
+
+```bash
+pnpm build     # moet slagen vóór push
+git push origin master
+```
+
+## Bekende afwijkingen van het oorspronkelijke prototype
+
+- **Hash-routing + `localStorage` verwijderd** — detailpagina's gebruiken echte
+  routes met `generateStaticParams`.
+- **`mailto:` vervangen** door een echte form handler met validatie en honeypot.
+- **Service-card-animaties vereenvoudigd** — de 6 micro-visuals houden het
+  concept met veel minder code. Zie `service-card-visual.tsx`.
+- **Uitgesteld:** de ROI-calculator, de scroll-gedreven "Mario"-sprite, de 3D
+  phone ring en de twee fotocarrousels ("Achter de schermen" / "Work in action").
+- **Oprichtersportretten worden niet weergegeven.** De bestanden staan wel in
+  `public/uploads/` (`portret-tom.jpg`, `portret-joep.jpg`);
+  `components/marketing/about.tsx` toont momenteel alleen de namen.
